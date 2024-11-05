@@ -46,11 +46,12 @@ export async function playMusic(token, typeOfContext, contextId) {
     }
     // return await result.json();
 }
-// gets one song via id
+// gets plays a song that was played before or plays selected content
 
 export async function startPlayback(token) {
     return playMusic(token);
 }
+// resumes the playback
 
 export async function pausePlayback(token) {
     const result = await fetch("https://api.spotify.com/v1/me/player/pause", {
@@ -60,6 +61,7 @@ export async function pausePlayback(token) {
         }
     });
 }
+// pauses the playback
 
 export async function getAvailableDevices(token) {
     const result = await fetch("https://api.spotify.com/v1/me/player/devices", {
@@ -69,4 +71,5 @@ export async function getAvailableDevices(token) {
 
     return await result.json();
 }
+// checkes where is it available to play the music
 

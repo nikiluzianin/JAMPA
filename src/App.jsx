@@ -2,9 +2,9 @@
 
 import './App.css'
 import './AuthTokenApi/AuthTokenApi.js'
-import { getAccessToken } from './AuthTokenApi/AuthTokenApi.js'
+import { getAccessToken } from './AuthTokenApi/AuthTokenApi.js'  // used to get the token for API calls
 import './ApiFunctions/ApiFunctions.js'
-import { fetchProfile, getTrack, playMusic, getAvailableDevices, startPlayback, pausePlayback } from './ApiFunctions/ApiFunctions.js'
+import { fetchProfile, getTrack, playMusic, getAvailableDevices, startPlayback, pausePlayback } from './ApiFunctions/ApiFunctions.js' // Some API calls to understand how the work
 
 
 function App() {
@@ -33,6 +33,7 @@ function App() {
   const playerScript = (
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
   );
+  // player is not working so far
 
   return (
     <>
