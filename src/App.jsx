@@ -10,15 +10,15 @@ import { getTrack } from './ApiFunctions/ApiFunctions.js'
 
 function App() {
 
-  console.log(getAccessToken());
-  fetchProfile(getAccessToken()).then(console.log);
-  getTrack(getAccessToken(), "11dFghVXANMlKmJXsNCbNl").then(console.log);
 
+  const clickHandler = () => {
+    getTrack(getAccessToken(), "11dFghVXANMlKmJXsNCbNl").then(console.log);
+  }
 
   return (
     <>
       <div>
-
+        <button className="button1" onClick={clickHandler}>do it</button>
         asdasd
       </div>
     </>
