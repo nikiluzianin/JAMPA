@@ -73,3 +73,18 @@ export async function getAvailableDevices(token) {
 }
 // checkes where is it available to play the music
 
+export async function transferPlaybackTo(token, deviceId) {
+    const result = await fetch("https://api.spotify.com/v1/me/player", {
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'device_ids': [
+                deviceId
+            ],
+            // 'play': true,
+        })
+    });
+}
