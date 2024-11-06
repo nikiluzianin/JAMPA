@@ -18,6 +18,13 @@ Built with:
 
 See the project instruction [here](https://unelmacloud.com/drive/s/pkvQo8OdksJ91PJWOqAWrzgDrjOsMM)
 
+## Notes
+
+if you need to get an access token, use the function getAccessToken() from AuthTokenApi.js
+
+To start playback on your computer, first run the Player.js. Player is started when using script from Player.js. 
+In order to start playing music on your computer, call API transferPlaybackTo(token, deviceId) with token (get it via getAccessToken() from AuthTokenApi.js) and device id (get it via getDeviceId() from Player.js)
+
 <!-- ## Setup and usage
 
 Live page [here](https://github.com/margittennosaar/markdown_study_materials)
