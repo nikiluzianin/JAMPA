@@ -62,7 +62,45 @@ export const getPlaylistCoverPhoto = async (playlistId) => {
     return data;
 }
 
-//
+//create a new playlist
+let playlistName, playlistDescription, isPublic;
+
+export const createPlaylist = async (userId, token, playlistName, playlistDescription, isPublic) => {
+
+    const playlistData = {
+        name: playlistName,
+        description: playlistDescription,
+        public: isPublic
+    };
+
+    try {
+        const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(playlistData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Playlist created successfully:', data);
+    } catch (error) {
+        console.error('Error creating playlist:', error);
+    }
+}
+
+
+
+
+
+
+
+
 
 
 
