@@ -1,22 +1,34 @@
 'use strict'
 
 const clientId = "dac95f7590c74699bc67d1b81f81f3b3"; // Client Id from Spotify App
+const redurectUrl = "http://localhost:5173/callback"; // Callback URL
+const scope = "user-read-private user-read-email streaming app-remote-control user-read-playback-state user-modify-playback-state";
+
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
-const redurectUrl = "http://localhost:5173/callback";
 
 export function getAccessToken() {
     return localStorage.getItem('access_token');
 }
 
-if (!code) {
-    redirectToAuthCodeFlow(clientId);
-} else {
-    if (localStorage.hasOwnProperty('access_token') == false) {
-        await requestAccessToken(clientId, code);
-    } /*else {
-        await refreshToken();
+checkAccessToken();
+
+function checkAccessToken() {
+    // if (localStorage.hasOwnProperty('access_token') == false) {
+    if (getAccessToken() == "undefined" || !getAccessToken()) {
+        requestAccessToken(clientId, code);
+    }
+    /*else {
+    await refreshToken(clientId, code);
     }*/
+}
+
+export async function login() {
+    if (!code) {
+        redirectToAuthCodeFlow(clientId);
+    } else {
+        checkAccessToken();
+    }
 }
 
 export async function redirectToAuthCodeFlow(clientId) {
@@ -29,7 +41,7 @@ export async function redirectToAuthCodeFlow(clientId) {
     params.append("client_id", clientId);
     params.append("response_type", "code");
     params.append("redirect_uri", redurectUrl);
-    params.append("scope", "user-read-private user-read-email streaming app-remote-control user-read-playback-state user-modify-playback-state");
+    params.append("scope", scope);
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
 
