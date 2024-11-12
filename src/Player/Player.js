@@ -1,14 +1,21 @@
 'use strict'
 
 import { getAccessToken } from '../AuthTokenApi/AuthTokenApi.js'
-import { transferPlaybackTo, } from '../ApiFunctions/ApiFunctions.js'
+import { transferPlaybackTo } from '../ApiFunctions/ApiFunctions.js'
 
 let player;
 let deviceId;
 
 // ** These functions are mostly for pivate usage - you do not really need them
 
-export function getPlayer() {
+/*if (getAccessToken()) {
+    preparePlayer();
+}*/
+
+function getPlayer() {
+    if (!player) {
+        preparePlayer();
+    }
     return player;
 }
 
@@ -16,18 +23,22 @@ export function getDeviceId() {
     return deviceId;
 }
 
+export function checkPlayer() {
+    console.log(getPlayer());
+}
+
 async function initializePlayer(accessToken) {
     import("https://sdk.scdn.co/spotify-player.js");
 
     window.onSpotifyWebPlaybackSDKReady = () => {
         const token = accessToken;
-        player = new Spotify.Player({
+        const newPlayer = new Spotify.Player({
             name: 'JAMPA Player',
             getOAuthToken: cb => { cb(token); },
             volume: 0.5
         });
 
-        player.addListener('ready', ({ device_id }) => {
+        newPlayer.addListener('ready', ({ device_id }) => {
             console.log('Ready with Device ID', device_id);
             deviceId = device_id;
             // newPlayer.activateElement();
@@ -35,30 +46,30 @@ async function initializePlayer(accessToken) {
         });
 
         // Not Ready
-        player.addListener('not_ready', ({ device_id }) => {
+        newPlayer.addListener('not_ready', ({ device_id }) => {
             console.log('Device ID has gone offline', device_id);
         });
 
-        player.addListener('initialization_error', ({ message }) => {
+        newPlayer.addListener('initialization_error', ({ message }) => {
             console.error(message);
         });
 
-        player.addListener('authentication_error', ({ message }) => {
+        newPlayer.addListener('authentication_error', ({ message }) => {
             console.error(message);
         });
 
-        player.addListener('account_error', ({ message }) => {
+        newPlayer.addListener('account_error', ({ message }) => {
             console.error(message);
         });
 
-        player.connect();
-
+        newPlayer.connect();
+        player = newPlayer;
+        return newPlayer;
     }
-    return await player;
 }
 
 async function getCurrentStatePlayer() {
-    player.getCurrentState().then(state => {
+    getPlayer().getCurrentState().then(state => {
         if (!state) {
             console.error('User is not playing music through the Web Playback SDK');
             return;
@@ -73,7 +84,7 @@ async function getCurrentStatePlayer() {
 }
 
 /*export async function activatePlayer() {
-
+ 
     player.activateElement();
     console.log(player);
     // Transfer your currently playing track into your
@@ -92,53 +103,50 @@ export async function pausePlayer() {
 
 export async function resumePlayer() {
 
-    if (player) {
-        player.resume().then(() => {
+    if (getPlayer()) {
+        getPlayer().resume().then(() => {
             console.log('Resumed!');
         });
     } else console.log("player is not ready yet");
 }
 
 export async function getPlayerVolume() {
-    player.getVolume().then(volume => {
+    getPlayer().getVolume().then(volume => {
         let volume_percentage = volume * 100;
         console.log('The volume of the player is ${volume_percentage}%');
     });
 }
 
 export async function setPlayerVolume(newVolume) {
-    player.setVolume(newVolume / 100).then(() => {
+    getPlayer().setVolume(newVolume / 100).then(() => {
         console.log('Volume updated!');
     });
 }
 
 export async function togglePlayer() {
-    player.togglePlay().then(() => {
+    getPlayer().togglePlay().then(() => {
         console.log('Toggled playback!');
     });
 }
 
 export async function previousTrackPlayer() {
-    player.previousTrack().then(() => {
+    getPlayer().previousTrack().then(() => {
         console.log('Set to previous track!');
     });
 }
 
 export async function nextTrackPlayer() {
-    player.nextTrack().then(() => {
+    getPlayer().nextTrack().then(() => {
         console.log('Skipped to next track!');
     });
 }
 
 export async function seekPositionPlayer(positionInSeconds) {
-    player.seek(positionInSeconds * 1000).then(() => {
+    getPlayer().seek(positionInSeconds * 1000).then(() => {
         console.log('Changed position!');
     });
 }
 
 export async function preparePlayer() {
-    await initializePlayer(getAccessToken());
-
-
-
+    initializePlayer(getAccessToken());
 }

@@ -11,9 +11,9 @@ export function getAccessToken() {
     return localStorage.getItem('access_token');
 }
 
-checkAccessToken();
+//checkAccessToken();
 
-function checkAccessToken() {
+export function checkAccessToken() {
     // if (localStorage.hasOwnProperty('access_token') == false) {
     if (getAccessToken() == "undefined" || !getAccessToken()) {
         requestAccessToken(clientId, code);
