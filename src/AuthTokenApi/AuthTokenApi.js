@@ -11,12 +11,16 @@ export function getAccessToken() {
     return localStorage.getItem('access_token');
 }
 
+console.log("runs");
 //checkAccessToken();
+
+checkAccessToken();
 
 export function checkAccessToken() {
     // if (localStorage.hasOwnProperty('access_token') == false) {
     if (getAccessToken() == "undefined" || !getAccessToken()) {
         requestAccessToken(clientId, code);
+        console.log("runs here");
     }
     /*else {
     await refreshToken(clientId, code);
@@ -88,7 +92,7 @@ export async function requestAccessToken(clientId, code) {
 
     const { access_token } = await result.json();
     localStorage.setItem('access_token', access_token);
-    return access_token;
+    return await access_token;
 
 }
 // generates a new access_token and stores it
