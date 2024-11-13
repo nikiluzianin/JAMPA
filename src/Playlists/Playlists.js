@@ -10,6 +10,7 @@ export const getSpotifyId = async () => {
     try {
         const profile = await fetchProfile(getAccessToken());
         userId = profile.id;
+        console.log(userId);
     } catch (error) {
         console.error('Error fetching profile:', error);
     }
@@ -63,9 +64,10 @@ export const getPlaylistCoverPhoto = async (playlistId) => {
 }
 
 //create a new playlist
+// stops working. hope to fix it soon
 let playlistName, playlistDescription, isPublic;
 
-export const createPlaylist = async (userId, token, playlistName, playlistDescription, isPublic) => {
+export const createPlaylist = async (playlistName, playlistDescription, isPublic) => {
 
     const playlistData = {
         name: playlistName,
@@ -77,7 +79,7 @@ export const createPlaylist = async (userId, token, playlistName, playlistDescri
         const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${getAccessToken()}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(playlistData)
@@ -93,6 +95,7 @@ export const createPlaylist = async (userId, token, playlistName, playlistDescri
         console.error('Error creating playlist:', error);
     }
 }
+
 
 
 
