@@ -1,5 +1,6 @@
 import './MoodModal.css';
-import { happySearch } from './data';
+import { searchSpotify } from '../../Playlists/Playlists';
+import { useEffect, useState } from 'react';
 
 
 
@@ -60,7 +61,12 @@ const Modal = ({ title, children, setShowModal }) => {
 }
 
 export const MoodModal = ({mood, setShowModal}) => {
-    const tracks = happySearch.tracks;
+    const [searchResult, setSerachResult] = useState();
+    
+    useEffect(() => {
+        searchSpotify(mood).then(response => setSerachResult(response))
+    }, [mood]);
+    const trackItems = searchResult ? searchResult.tracks.items : [];
 
     return (
         <Modal title={mood} setShowModal={setShowModal} >
@@ -73,7 +79,7 @@ export const MoodModal = ({mood, setShowModal}) => {
                             <th>Artist</th>
                             <th>Duration</th>
                         </tr>
-                        {tracks.items.map(track => 
+                        {trackItems.map(track => 
                             <TrackRow key={track.id} 
                             trackName={track.name} 
                             albumImageUrl={track.album.images[0].url} 

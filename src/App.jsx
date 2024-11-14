@@ -14,9 +14,12 @@ import { useState } from 'react'
 function App() {
 
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
-  const moodButtonClickHandler = () => {
+  const [mood, setMood] = useState();
+
+  
+  const moodButtonClickHandler = (mood) => {
     setShowModal(true);
+    setMood(mood)
   };
 
 
@@ -55,11 +58,16 @@ function App() {
         <button className="button2" onClick={clickHandler2}>pause playing</button>
         <button className="button3" onClick={clickHandler3}>resume playing</button>
         <button className="button4" onClick={clickHandler4}>start playing my playlist</button>
-        <button className={"mood-button"} onClick={moodButtonClickHandler}>Mood button</button>
+        
+      </div>
+      <div>
+        <button className={"mood-button"} onClick={() => moodButtonClickHandler("Happy")}>Happy</button>
+        <button className={"mood-button"} onClick={() => moodButtonClickHandler("Angry")}>Angry</button>
+        <button className={"mood-button"} onClick={() => moodButtonClickHandler("Sad")}>Sad</button>
       </div>
 
       <div>
-        {showModal && <MoodModal mood={"Happy"} setShowModal={setShowModal} />}
+        {showModal && <MoodModal mood={mood} setShowModal={setShowModal} />}
       </div>
     
     </>
