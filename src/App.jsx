@@ -5,9 +5,20 @@ import './AuthTokenApi/AuthTokenApi.js'
 import { getAccessToken } from './AuthTokenApi/AuthTokenApi.js'  // used to get the token for API calls
 import './ApiFunctions/ApiFunctions.js'
 import { fetchProfile, getTrack, playMusic, getAvailableDevices, startPlayback, pausePlayback } from './ApiFunctions/ApiFunctions.js' // Some API calls to understand how the work
+import { MoodModal } from './component/modal/MoodModal.jsx'
+import * as bootstrap from'bootstrap';
+import { useState } from 'react'
+
 
 
 function App() {
+
+  const [showModal, setShowModal] = useState(false);
+  console.log(showModal);
+  const moodButtonClickHandler = () => {
+    setShowModal(true);
+  };
+
 
 
   const clickHandler1 = () => {
@@ -44,8 +55,13 @@ function App() {
         <button className="button2" onClick={clickHandler2}>pause playing</button>
         <button className="button3" onClick={clickHandler3}>resume playing</button>
         <button className="button4" onClick={clickHandler4}>start playing my playlist</button>
-
+        <button className={"mood-button"} onClick={moodButtonClickHandler}>Mood button</button>
       </div>
+
+      <div>
+        {showModal && <MoodModal mood={"Happy"} setShowModal={setShowModal} />}
+      </div>
+    
     </>
   )
 }

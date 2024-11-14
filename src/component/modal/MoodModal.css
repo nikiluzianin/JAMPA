@@ -1,0 +1,59 @@
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* .modal {
+    background-color: bisque;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #333;
+    padding: 2rem;
+    width: 80vw;
+    position: relative;
+} */
+
+.header-image {
+    background: url('../../images/modalImage.jpg');
+    height: 250px;
+    width: 80%;
+    margin: 0 auto
+}
+
+.track-image {
+    height: 40px;
+    width: 40px;
+}
+
+.modal {
+    display: block !important;
+}
+
+#id-modal-content {
+    background-color: #9C9898;
+}
+
+.track-name {
+    display: flex;
+    gap: 5px;
+}
+
+.track, .artist {
+    text-align: left;
+}
+
+.track-table td,th, tr {
+    border-bottom: 1px solid lightgray;
+    border-collapse: collapse;
+}
+
+
+
