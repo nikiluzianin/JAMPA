@@ -5,10 +5,13 @@ import './AuthTokenApi/AuthTokenApi.js'
 import { getAccessToken } from './AuthTokenApi/AuthTokenApi.js'  // used to get the token for API calls
 import './ApiFunctions/ApiFunctions.js'
 import { fetchProfile, getTrack, playMusic, getAvailableDevices, startPlayback, pausePlayback } from './ApiFunctions/ApiFunctions.js' // Some API calls to understand how the work
+import * as bootstrap from'bootstrap';
+import TestModal from './TestModal.jsx'
+
+
 
 
 function App() {
-
 
   const clickHandler1 = () => {
     getTrack(getAccessToken(), "3WMbD1OyfKuwWDWMNbPQ4g").then(response => console.log("song name " + response.name));
@@ -44,8 +47,13 @@ function App() {
         <button className="button2" onClick={clickHandler2}>pause playing</button>
         <button className="button3" onClick={clickHandler3}>resume playing</button>
         <button className="button4" onClick={clickHandler4}>start playing my playlist</button>
-
+        
       </div>
+
+      <div>
+        <TestModal />
+      </div>
+    
     </>
   )
 }
