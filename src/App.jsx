@@ -5,24 +5,13 @@ import './AuthTokenApi/AuthTokenApi.js'
 import { getAccessToken } from './AuthTokenApi/AuthTokenApi.js'  // used to get the token for API calls
 import './ApiFunctions/ApiFunctions.js'
 import { fetchProfile, getTrack, playMusic, getAvailableDevices, startPlayback, pausePlayback } from './ApiFunctions/ApiFunctions.js' // Some API calls to understand how the work
-import { MoodModal } from './component/modal/MoodModal.jsx'
 import * as bootstrap from'bootstrap';
-import { useState } from 'react'
+import TestModal from './TestModal.jsx'
+
 
 
 
 function App() {
-
-  const [showModal, setShowModal] = useState(false);
-  const [mood, setMood] = useState();
-
-  
-  const moodButtonClickHandler = (mood) => {
-    setShowModal(true);
-    setMood(mood)
-  };
-
-
 
   const clickHandler1 = () => {
     getTrack(getAccessToken(), "3WMbD1OyfKuwWDWMNbPQ4g").then(response => console.log("song name " + response.name));
@@ -60,14 +49,9 @@ function App() {
         <button className="button4" onClick={clickHandler4}>start playing my playlist</button>
         
       </div>
-      <div>
-        <button className={"mood-button"} onClick={() => moodButtonClickHandler("Happy")}>Happy</button>
-        <button className={"mood-button"} onClick={() => moodButtonClickHandler("Angry")}>Angry</button>
-        <button className={"mood-button"} onClick={() => moodButtonClickHandler("Sad")}>Sad</button>
-      </div>
 
       <div>
-        {showModal && <MoodModal mood={mood} setShowModal={setShowModal} />}
+        <TestModal />
       </div>
     
     </>

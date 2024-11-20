@@ -33,11 +33,6 @@ const Modal = ({ title, children, setShowModal }) => {
     const closeModalHandler = () => {
         setShowModal(false);
     }
-
-    const backToTop = () => {
-
-    }
-
     return (
         <div className={"modal"} id={"staticBackdrop"} data-bs-backdrop={"static"} data-bs-keyboard={"false"} aria-labelledby={"staticBackdropLabel"} aria-hidden={"true"}>
             <div className={"modal-dialog modal-dialog-centered modal-dialog-scrollable"}>
@@ -52,7 +47,6 @@ const Modal = ({ title, children, setShowModal }) => {
                 <div className={"modal-footer"}>
                     <button type={"button"} className={"btn btn-secondary"} data-bs-dismiss={"modal"} onClick={closeModalHandler} >Close</button>
                     <a href='#songList'>BackToTop</a>
-                   {/*  <button type={"button"} className={"btn btn-primary"}>backToTop</button> */}
                 </div>
                 </div>
             </div>
