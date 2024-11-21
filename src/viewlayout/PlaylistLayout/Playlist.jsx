@@ -42,9 +42,11 @@ const PlaylistLayout = () => {
 
         {/* Display results  album, track */}
         <div className={"playlist-container"}>
-          {results.albums?.items?.length > 0 ? (
+          {results?.albums?.items?.length > 0 ? (
             results.albums.items.map((album) => (
-              <MusicCard key={album.href} album={album} />
+              album ? <MusicCard key={album.href} album={album} /> : null 
+             // <MusicCard key={`${album.name}-${album.artists[0].name}`} album={album} />
+
             ))
           ) : (
             <p>No results found.</p>
