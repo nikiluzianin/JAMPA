@@ -1,8 +1,19 @@
 import './MoodModal.css';
 import { searchSpotify } from '../../Playlists/Playlists';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { AudioPreview } from './AudioPreview';
 
 
+
+const TrackBar = ({progress}) => {
+    return (
+        <tr>
+            <td colSpan={3} className='playbar-row'>
+                <div style={{width:`${progress}%`}} className={"playbar"} />
+            </td>
+        </tr>
+    )
+}
 
 const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
     const msToTime = (durationInMs)=> {
@@ -11,21 +22,34 @@ const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
 
         return `${minutes}:${seconds}`
     }
+
+    const shortenName = (name) => {
+        return name.length > 21 ? `${name.slice(0, 21)}...` : name; 
+    }
+
     return (
+        <>
         <tr>
             <td className={"track"}>
                 <div className={"track-name"}>
-                    <img className={"track-image"} src={albumImageUrl}></img>
-                    <p>{trackName}</p>
+                    <div className={"image-play-icon"}>
+                        <i className={"bi bi-play-circle play-icon"}></i>
+                        <img className={"track-image"} src={albumImageUrl}></img>
+                       
+                    </div>
+                    
+                    <p className={"track-p"}>{shortenName(trackName)}</p>
                 </div>
             </td>
             <td className={"artist"}>
-                <p>{artistName}</p>
+                <p className={"track-p"}>{artistName}</p>
             </td>
             <td>
-                <p>{msToTime(duration)}</p>
+                <p className={"track-p"}>{msToTime(duration)}</p>
             </td>
         </tr>
+        </>
+     
     )
 }
 
@@ -57,10 +81,15 @@ const Modal = ({ title, children, setShowModal }) => {
 export const MoodModal = ({mood, setShowModal}) => {
     const [searchResult, setSerachResult] = useState();
     
+    const [previewUrl, setPreviewUrl] = useState();
+    const audioRef = useRef(null);
+    
     useEffect(() => {
         searchSpotify(mood).then(response => setSerachResult(response))
     }, [mood]);
     const trackItems = searchResult ? searchResult.tracks.items : [];
+
+    const bar_progress = 10;
 
     return (
         <Modal title={mood} setShowModal={setShowModal} >
@@ -68,25 +97,29 @@ export const MoodModal = ({mood, setShowModal}) => {
                 <div id={"songList"} className={'header-image'}></div>
                 <div className={"modal-dialog modal-dialog-scrollable"}>
                     <table className={"track-table"}>
+                        <tbody>
                         <tr>
                             <th>Track</th>
                             <th>Artist</th>
                             <th>Duration</th>
                         </tr>
                         {trackItems.map(track => 
+                        <>
                             <TrackRow key={track.id} 
                             trackName={track.name} 
                             albumImageUrl={track.album.images[0].url} 
                             duration={track.duration_ms}
                             artistName={track.artists[0].name}/>
+                            <TrackBar progress={bar_progress} />
+                        </>
                         )}
-                    </table>
-                    
+                        </tbody>
+                    </table>  
+                    <AudioPreview previewUrl={previewUrl} audioRef={audioRef}/>  
                 </div>
             </>
         </Modal>
-    )   
-
+    )
 }
 
 

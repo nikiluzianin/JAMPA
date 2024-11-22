@@ -44,6 +44,7 @@
 .track-name {
     display: flex;
     gap: 5px;
+    align-items: center;
 }
 
 .track, .artist {
@@ -51,8 +52,37 @@
 }
 
 .track-table td,th, tr {
-    border-bottom: 1px solid lightgray;
     border-collapse: collapse;
+}
+
+.track-table tr:nth-child(odd) {
+    border-bottom: 1px solid lightgray;
+}
+.playbar-row {
+    height: 5px;
+}
+
+.playbar {
+    height: 100%;
+    background-color: rgb(9, 119, 215);
+}
+
+.track-p {
+    margin: 0;
+}
+
+.image-play-icon {
+    position: relative;
+}
+
+.play-icon {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    font-size: 30px;
+    color: white;
+    background: #8080808f;
+    padding-left: 5px;
 }
 
 
