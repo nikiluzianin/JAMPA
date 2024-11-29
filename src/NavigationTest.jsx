@@ -5,7 +5,6 @@ import { getAccessToken, login, checkAccessToken } from './AuthTokenApi/AuthToke
 
 
 const loginAction = () => {
-    console.log("asd");
     login();
 }
 
@@ -16,8 +15,8 @@ function NavigationTest() {
 
     useEffect(() => {
         const testToken = getAccessToken();
-        console.log(testToken);
-        setToken(getAccessToken());
+        //console.log(testToken);
+        setToken(testToken);
     });
 
 
@@ -26,7 +25,6 @@ function NavigationTest() {
         <>
             <div>
                 <LoginScreen click={loginAction} />
-                {token}
             </div>
 
         </>
