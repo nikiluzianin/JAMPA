@@ -1,0 +1,46 @@
+ /*.cardTemplate{
+    background-color: rgb(245, 188, 57);
+    width: 150px;
+    height: 150px;
+    position: relative; 
+}
+
+.card-layer{
+    width: 40px;
+    height:40px;
+    border-radius: 50%;
+    background: red;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content:center ;
+
+} 
+
+.play-btn{
+    border-top: 10px solid transparent;
+	border-left: 20px solid #555;
+	border-bottom: 10px solid transparent;
+    position: relative; 
+    right: -120px;
+    bottom: -60px; 
+    transition: opacity 0.3s ease; 
+    opacity: 1;
+}
+
+.cardTemplate .card-layer .play-btn :hover{
+    opacity: 1; 
+}
+
+
+
+/* .cardTemplate:hover .card-layer{
+    width: 0;
+	height: 0;
+	border-top: 20px solid transparent;
+	border-left: 20px solid #555;
+	border-bottom: 20px solid transparent;
+    
+} */
