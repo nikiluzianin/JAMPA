@@ -7,7 +7,7 @@ const MusicCard = (props) => {
     : "https://via.placeholder.com/150";
 
     return (
-        <div className="card h-100">
+        <div>
             <img
                 key={href}
                 src={singleImage}

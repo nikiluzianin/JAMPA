@@ -1,4 +1,4 @@
-'use strict'
+'use strict'; 
 import './App.css'
 import Header from './viewlayout/Header/Header'
 import SideSection from './viewlayout/SideSection/SideSection'

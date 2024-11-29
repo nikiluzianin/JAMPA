@@ -1,6 +1,7 @@
 import MusicCard from "../MusicCards/MusicCard";
 import { searchSpotify } from '../../Playlists/Playlists';
 import { useEffect, useState } from "react";
+import './Playlist.css'
 
 
 const PlaylistLayout = () => {
@@ -31,7 +32,7 @@ const PlaylistLayout = () => {
     <>
     <div className="playlist">
         {/* Search Bar */}
-        <div>
+        <div className="search-field">
           <input
             type="text"
             placeholder="Search for an artist or album..."
@@ -44,7 +45,8 @@ const PlaylistLayout = () => {
         <div className={"playlist-container"}>
           {results?.albums?.items?.length > 0 ? (
             results.albums.items.map((album) => (
-              album ? <MusicCard key={album.href} album={album} /> : null 
+              album ? 
+              <MusicCard key={album.href} album={album} /> : null 
              // <MusicCard key={`${album.name}-${album.artists[0].name}`} album={album} />
 
             ))

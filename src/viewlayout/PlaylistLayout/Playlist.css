@@ -1,14 +1,29 @@
-/* .section-right{
+ .playlist-container{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:50px;
 } 
 
-
-.playlist{
+.search-field{
+    display: block;
     margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 300px;
 }
 
-.results-container{
-    flex-wrap: wrap;
-    flex-direction: row;
+.search-field input{
+    width: 60%;
+    /* border: none; */
+    border: 1px solid gray;
+    border-radius: 30px;
+    padding: 10px;
+
 }
-    */
+
+
+
+/* .playlist-container
+    {grid-template-columns: repeat(2, 1fr);
+    justify-content: center;} */
