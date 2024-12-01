@@ -22,9 +22,9 @@
 } */
 
 .header-image {
-    background: url('../../images/modalImage.jpg');
+    background: url('../../images/happy.jpg');
     height: 250px;
-    width: 80%;
+    width: 100%;
     margin: 0 auto
 }
 
@@ -55,7 +55,7 @@
     border-collapse: collapse;
 }
 
-.track-table tr:nth-child(odd) {
+.track-table tr {
     border-bottom: 1px solid lightgray;
 }
 .playbar-row {
@@ -83,6 +83,30 @@
     color: white;
     background: #8080808f;
     padding-left: 5px;
+}
+
+.clickable-row {
+    pointer-events: auto;
+}
+
+.clickable-row:hover {
+    background: #7e7e7e;
+}
+
+.clickable-row-menu {
+    cursor: pointer;
+}
+
+.row-menu-container {
+    position: relative;
+}
+
+.row-menu {
+    position: absolute;
+    border: 1px solid black;
+    background-color: white;
+    right: 100%;
+    width: 200px;
 }
 
 

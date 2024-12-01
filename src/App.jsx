@@ -11,6 +11,8 @@ import TestModal from './TestModal.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import Root from './pages/Root.jsx'
 import Home from './pages/Home.jsx'
+import { HomePage } from './component/homePage/HomePage.jsx'
+
 
 
 // getAccessToken();
