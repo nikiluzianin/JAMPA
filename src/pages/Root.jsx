@@ -1,4 +1,6 @@
 import { Outlet } from "react-router-dom";
+import Header from "../viewlayout/Header/Header"
+import Footer from "../viewlayout/Footer/Footer";
 
 const Root = () => {
 
@@ -17,8 +19,10 @@ const Root = () => {
     return (
         <div>
             <main>
+                <Header />
                 <p>It is in root </p>
                 <Outlet />
+                <Footer />
             </main>
         </div>
     )
