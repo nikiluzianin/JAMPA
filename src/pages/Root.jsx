@@ -17,6 +17,7 @@ const Root = () => {
     return (
         <div>
             <main>
+                <p>It is in root </p>
                 <Outlet />
             </main>
         </div>

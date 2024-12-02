@@ -7,11 +7,12 @@ import { router } from "./routes/appRoute.jsx"
 import { getAccessToken, login, checkAccessToken } from './AuthTokenApi/AuthTokenApi.js'
 import InitPlayerTest from './InitPlayerTest.jsx'
 import LoginScreen from './LoginScreen/LoginScreen2.jsx'
+import TestModal from './TestModal.jsx'
+import ErrorPage from './pages/ErrorPage.jsx'
+import Root from './pages/Root.jsx'
 
 
-
-
-getAccessToken();
+// getAccessToken();
 
 function App() {
 
@@ -25,40 +26,33 @@ function App() {
   useEffect(() => {
     const hash = window.location.search;
     if (hash) {
-      console.log(typeof (loggedIn));
       setLoggedIn(true);
       // setToken(checkAccessToken());
     }
     navigate('/login');
   }, []);
 
-  const loginAction = () => {
-    login();
-  }
-
   useEffect(() => {
     if (loggedIn) {
       navigate('/home');
     }
+    console.log("logged in effect");
   }, [loggedIn])
 
-  // console.log("important " + token);
-
-
-
-
-  /*const toggleLoggedIn = () => {
-    setLoggedIn(true);
-  }*/
-
-  // const router1 = router(loggedIn, loginAction);
+  const loginAction = () => {
+    login();
+  }
 
   return (
     /*<RouterProvider router={router1} future={{
       v7_startTransition: true,
     }} />*/
     <Routes>
-      <Route path='/home' element={<InitPlayerTest />} />
+      <Route path='/' element={<Root />}>
+        <Route path='/home' element={<TestModal />} />
+        <Route path='/initPlayer' element={<InitPlayerTest />} />
+        <Route path="/*" element={<ErrorPage />} />
+      </Route>
       <Route path='/login' element={<LoginScreen click={loginAction} />} />
     </Routes>
   )

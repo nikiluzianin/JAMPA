@@ -13,7 +13,6 @@ import { pausePlayer, preparePlayer, resumePlayer, checkPlayer } from './Player/
 
 function InitPlayerTest() {
 
-
     const getTrackInfoAction = () => {
         getTrack(getAccessToken(), "3WMbD1OyfKuwWDWMNbPQ4g").then(response => console.log(response));
     }
