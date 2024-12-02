@@ -1,0 +1,39 @@
+
+.homepage{
+    color: aqua;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 10%;
+    background-color: blue;
+    width: 100%;
+}
+.homepage main{
+    display: flex;
+    width: 100vw;
+    background-color: blueviolet;
+    height: 70vh;
+}
+.sidebar{
+    background-color: bisque;
+    width: 20%;
+}
+.content{
+    background-color: cadetblue;
+    width: 80%;
+    height: 100%;
+}
+footer{
+    background-color: salmon;
+    height: 10vh;
+    width: 100 vw;
+}
+.popup{
+    position: fixed;
+    bottom: 0;
+}
+
+
