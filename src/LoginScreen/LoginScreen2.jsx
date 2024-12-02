@@ -1,8 +1,16 @@
-
+import { useNavigate } from "react-router-dom";
 
 
 
 const LoginScreen = props => {
+
+  const navigate = useNavigate();
+
+  const loginActionWithRedirect = () => {
+    props.click().then(console.log("loggedin"));
+    navigate("/home");
+  }
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center relative">
       <div className="w-full h-full absolute top-0 left-0">
@@ -18,7 +26,7 @@ const LoginScreen = props => {
         <div className="flex flex-col items-center justify-center mt-10">
           <button
             className="w-fit px-5 py-2 text-lg capitalize text-white bg-[#1ed760] rounded-full font-bold"
-            onClick={props.click}>
+            onClick={loginActionWithRedirect}>
             connect to Jampa
           </button>
         </div>

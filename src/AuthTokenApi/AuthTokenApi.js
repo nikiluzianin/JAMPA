@@ -16,7 +16,7 @@ console.log("runs");
 
 const lala = await checkAccessToken();
 
-console.log("asdasd " + lala)
+//console.log("asdasd " + lala)
 
 //console.log("from script " + await checkAccessToken());
 
@@ -24,7 +24,6 @@ export async function checkAccessToken() {
     // if (localStorage.hasOwnProperty('access_token') == false) {
     if (getAccessToken() == "undefined" || !getAccessToken()) {
         const newToken = await requestAccessToken(clientId, code);
-        console.log("asd " + newToken);
         return await newToken;
     }
     /*else {
@@ -34,9 +33,9 @@ export async function checkAccessToken() {
 
 export async function login() {
     if (!code) {
-        redirectToAuthCodeFlow(clientId);
+        await redirectToAuthCodeFlow(clientId);
     } else {
-        checkAccessToken();
+        await checkAccessToken();
     }
 }
 

@@ -1,35 +1,66 @@
 'use strict'
 
 import './App.css'
-
-import NavigationTest from './NavigationTest.jsx'
+import { useState, useEffect } from 'react'
+import { RouterProvider, Routes, useNavigate, Route } from 'react-router-dom'
+import { router } from "./routes/appRoute.jsx"
+import { getAccessToken, login, checkAccessToken } from './AuthTokenApi/AuthTokenApi.js'
 import InitPlayerTest from './InitPlayerTest.jsx'
-import TestModal from './TestModal.jsx'
+import LoginScreen from './LoginScreen/LoginScreen2.jsx'
 
 
 
+
+getAccessToken();
 
 function App() {
 
+  // const [token, setToken] = useState('1');
+  const [loggedIn, setLoggedIn] = useState(window.location.search);
 
+  const navigate = useNavigate();
+
+  // manages if user is logged in or not
+
+  useEffect(() => {
+    const hash = window.location.search;
+    if (hash) {
+      console.log(typeof (loggedIn));
+      setLoggedIn(true);
+      // setToken(checkAccessToken());
+    }
+    navigate('/login');
+  }, []);
+
+  const loginAction = () => {
+    login();
+  }
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate('/home');
+    }
+  }, [loggedIn])
+
+  // console.log("important " + token);
+
+
+
+
+  /*const toggleLoggedIn = () => {
+    setLoggedIn(true);
+  }*/
+
+  // const router1 = router(loggedIn, loginAction);
 
   return (
-    <>
-      <div>
-        {playerScript}
-        {player}
-        <button className="button1" onClick={clickHandler1}>get track</button>
-        <button className="button2" onClick={clickHandler2}>pause playing</button>
-        <button className="button3" onClick={clickHandler3}>resume playing</button>
-        <button className="button4" onClick={clickHandler4}>start playing my playlist</button>
-
-      </div>
-
-      <div>
-        <TestModal />
-      </div>
-
-    </>
+    /*<RouterProvider router={router1} future={{
+      v7_startTransition: true,
+    }} />*/
+    <Routes>
+      <Route path='/home' element={<InitPlayerTest />} />
+      <Route path='/login' element={<LoginScreen click={loginAction} />} />
+    </Routes>
   )
 }
 
