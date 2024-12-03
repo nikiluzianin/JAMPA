@@ -10,6 +10,7 @@ import LoginScreen from './LoginScreen/LoginScreen2.jsx'
 import TestModal from './TestModal.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import Root from './pages/Root.jsx'
+import Home from './pages/Home.jsx'
 
 
 // getAccessToken();
@@ -17,7 +18,8 @@ import Root from './pages/Root.jsx'
 function App() {
 
   // const [token, setToken] = useState('1');
-  const [loggedIn, setLoggedIn] = useState(window.location.search);
+  // const [loggedIn, setLoggedIn] = useState(window.location.search);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -48,8 +50,9 @@ function App() {
     }} />*/
     <Routes>
       <Route path='/login' element={<LoginScreen click={loginAction} />} />
-      <Route path='/' element={<Root />}>
-        <Route path='/home' element={<TestModal />} />
+      <Route path='/' element={<Root isLoggedin={loggedIn} />}>
+        <Route path='/home' element={<Home />} />
+        <Route path='/modal' element={<TestModal />} />
         <Route path='/initPlayer' element={<InitPlayerTest />} />
         <Route path="/*" element={<ErrorPage />} />
       </Route>
