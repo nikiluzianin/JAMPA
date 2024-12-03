@@ -2,7 +2,7 @@
 
 const clientId = "dac95f7590c74699bc67d1b81f81f3b3"; // Client Id from Spotify App
 const redurectUrl = "http://localhost:5173/callback"; // Callback URL
-const scope = "user-read-private user-read-email streaming app-remote-control user-read-playback-state user-modify-playback-state";
+const scope = "user-read-private user-read-email streaming app-remote-control user-read-playback-state user-modify-playback-state playlist-modify-public playlist-modify-private";
 
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
