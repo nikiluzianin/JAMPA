@@ -95,6 +95,12 @@ async function getCurrentStatePlayer() {
 
 // ** below are functions for public usage, they include all the player actions
 
+export async function preparePlayer() {
+    initializePlayer(getAccessToken());
+}
+// initializes the player 
+// need to be called only once and it is done when the root is first initialized after login
+
 export async function getCurrentTrack() {
 
     getPlayer().getCurrentState().then(state => {
@@ -106,6 +112,7 @@ export async function getCurrentTrack() {
         return state.track_window.current_track;
     });
 }
+// returns object that has all the info about current track
 
 export async function getNextTrack() {
     getPlayer().getCurrentState().then(state => {
@@ -114,9 +121,10 @@ export async function getNextTrack() {
             return;
         }
 
-        return state.track_window.next_track;
+        return state.track_window.next_tracks[0];
     });
 }
+// returns an object containing all the info about the next track
 
 
 export async function pausePlayer() {
@@ -124,6 +132,7 @@ export async function pausePlayer() {
         console.log('Paused!');
     });
 }
+// pauses the player
 
 export async function resumePlayer() {
 
@@ -133,6 +142,14 @@ export async function resumePlayer() {
         });
     } else console.log("player is not ready yet");
 }
+// resumes the player
+
+export async function togglePlayer() {
+    getPlayer().togglePlay().then(() => {
+        console.log('Toggled playback!');
+    });
+}
+// pauses/resumes plyaback on the player
 
 export async function getPlayerVolume() {
     getPlayer().getVolume().then(volume => {
@@ -140,41 +157,37 @@ export async function getPlayerVolume() {
         console.log('The volume of the player is ${volume_percentage}%');
     });
 }
+// returns volume of the player
 
 export async function setPlayerVolume(newVolume) {
     getPlayer().setVolume(newVolume / 100).then(() => {
         console.log('Volume updated!');
     });
 }
-
-export async function togglePlayer() {
-    getPlayer().togglePlay().then(() => {
-        console.log('Toggled playback!');
-    });
-}
+// sets the volume of the player
 
 export async function previousTrackPlayer() {
     getPlayer().previousTrack().then(() => {
         console.log('Set to previous track!');
     });
 }
+// starts playing previous track
 
 export async function nextTrackPlayer() {
     getPlayer().nextTrack().then(() => {
         console.log('Skipped to next track!');
     });
 }
+// starts playing current track
 
 export async function seekPositionPlayer(positionInSeconds) {
     getPlayer().seek(positionInSeconds * 1000).then(() => {
         console.log('Changed position!');
     });
 }
-
-export async function preparePlayer() {
-    initializePlayer(getAccessToken());
-}
+// moves playback to the requested position of the track
 
 export async function playMusicInPlayer(typeOfContent, contentId) {
     playMusic(getAccessToken(), typeOfContent, contentId);
 }
+// starts to play selected music in the player
