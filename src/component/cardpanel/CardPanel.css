@@ -1,0 +1,25 @@
+.card-panel {
+    color: white; 
+}
+
+.scrollable-cards {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    gap: 15px;
+}
+
+.detail-card {
+    height: 220px;
+    width: 200px;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    background: #01B2B0;
+}
+
+.detail-card img {
+    height: 150px;
+    width: 180px;
+}
