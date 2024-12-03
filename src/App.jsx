@@ -1,59 +1,62 @@
 'use strict'
 
 import './App.css'
-import './AuthTokenApi/AuthTokenApi.js'
-import { getAccessToken } from './AuthTokenApi/AuthTokenApi.js'  // used to get the token for API calls
-import './ApiFunctions/ApiFunctions.js'
-import { fetchProfile, getTrack, playMusic, getAvailableDevices, startPlayback, pausePlayback } from './ApiFunctions/ApiFunctions.js' // Some API calls to understand how the work
+import { useState, useEffect } from 'react'
+import { RouterProvider, Routes, useNavigate, Route } from 'react-router-dom'
+import { router } from "./routes/appRoute.jsx"
+import { getAccessToken, login, checkAccessToken } from './AuthTokenApi/AuthTokenApi.js'
+import InitPlayerTest from './InitPlayerTest.jsx'
+import LoginScreen from './LoginScreen/LoginScreen2.jsx'
 import TestModal from './TestModal.jsx'
+import ErrorPage from './pages/ErrorPage.jsx'
+import Root from './pages/Root.jsx'
+import Home from './pages/Home.jsx'
 
 
-
+// getAccessToken();
 
 function App() {
 
-  const clickHandler1 = () => {
-    getTrack(getAccessToken(), "3WMbD1OyfKuwWDWMNbPQ4g").then(response => console.log("song name " + response.name));
+  // const [token, setToken] = useState('1');
+  // const [loggedIn, setLoggedIn] = useState(window.location.search);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const navigate = useNavigate();
+
+  // manages if user is logged in or not
+
+  useEffect(() => {
+    const hash = window.location.search;
+    if (hash) {
+      setLoggedIn(true);
+      // setToken(checkAccessToken());
+    }
+    navigate('/login');
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate('/home');
+    }
+  }, [loggedIn])
+
+  const loginAction = () => {
+    login();
   }
-
-  const clickHandler2 = () => {
-    pausePlayback(getAccessToken()).then(console.log("playback stopped"));
-  }
-
-  const clickHandler3 = () => {
-    startPlayback(getAccessToken()).then(console.log("playback started"));
-  }
-
-  const clickHandler4 = () => {
-    playMusic(getAccessToken(), "playlist", "37i9dQZF1E8BgFtiYSPVv9").then(console.log);
-  }
-
-  const player = (
-    <h2>Player will be here hopefully</h2>
-  );
-
-  const playerScript = (
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
-  );
-  // player is not working so far
 
   return (
-    <>
-      <div>
-        {playerScript}
-        {player}
-        <button className="button1" onClick={clickHandler1}>get track</button>
-        <button className="button2" onClick={clickHandler2}>pause playing</button>
-        <button className="button3" onClick={clickHandler3}>resume playing</button>
-        <button className="button4" onClick={clickHandler4}>start playing my playlist</button>
-        
-      </div>
-
-      <div>
-        <TestModal />
-      </div>
-    
-    </>
+    /*<RouterProvider router={router1} future={{
+      v7_startTransition: true,
+    }} />*/
+    <Routes>
+      <Route path='/login' element={<LoginScreen click={loginAction} />} />
+      <Route path='/' element={<Root isLoggedin={loggedIn} />}>
+        <Route path='/home' element={<Home />} />
+        <Route path='/modal' element={<TestModal />} />
+        <Route path='/initPlayer' element={<InitPlayerTest />} />
+        <Route path="/*" element={<ErrorPage />} />
+      </Route>
+    </Routes>
   )
 }
 

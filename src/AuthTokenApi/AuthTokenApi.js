@@ -1,22 +1,42 @@
 'use strict'
 
 const clientId = "dac95f7590c74699bc67d1b81f81f3b3"; // Client Id from Spotify App
+const redurectUrl = "http://localhost:5173/callback"; // Callback URL
+const scope = "user-read-private user-read-email streaming app-remote-control user-read-playback-state user-modify-playback-state";
+
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
-const redurectUrl = "http://localhost:5173/callback";
 
 export function getAccessToken() {
     return localStorage.getItem('access_token');
 }
 
-if (!code) {
-    redirectToAuthCodeFlow(clientId);
-} else {
-    if (localStorage.hasOwnProperty('access_token') == false) {
-        await requestAccessToken(clientId, code);
-    } /*else {
-        await refreshToken();
+// console.log("runs");
+//checkAccessToken();
+
+const lala = await checkAccessToken();
+
+//console.log("asdasd " + lala)
+
+//console.log("from script " + await checkAccessToken());
+
+export async function checkAccessToken() {
+    // if (localStorage.hasOwnProperty('access_token') == false) {
+    if (getAccessToken() == "undefined" || !getAccessToken()) {
+        const newToken = await requestAccessToken(clientId, code);
+        return await newToken;
+    }
+    /*else {
+    await refreshToken(clientId, code);
     }*/
+}
+
+export async function login() {
+    if (!code) {
+        await redirectToAuthCodeFlow(clientId);
+    } else {
+        await checkAccessToken();
+    }
 }
 
 export async function redirectToAuthCodeFlow(clientId) {
@@ -29,7 +49,7 @@ export async function redirectToAuthCodeFlow(clientId) {
     params.append("client_id", clientId);
     params.append("response_type", "code");
     params.append("redirect_uri", redurectUrl);
-    params.append("scope", "user-read-private user-read-email streaming app-remote-control user-read-playback-state user-modify-playback-state");
+    params.append("scope", scope);
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
 
@@ -76,7 +96,7 @@ export async function requestAccessToken(clientId, code) {
 
     const { access_token } = await result.json();
     localStorage.setItem('access_token', access_token);
-    return access_token;
+    return await access_token;
 
 }
 // generates a new access_token and stores it
