@@ -1,7 +1,7 @@
 'use strict'
 
 import { getAccessToken } from '../AuthTokenApi/AuthTokenApi.js'
-import { transferPlaybackTo } from '../ApiFunctions/ApiFunctions.js'
+import { transferPlaybackTo, playMusic } from '../ApiFunctions/ApiFunctions.js'
 
 let player;
 let deviceId;
@@ -95,6 +95,30 @@ async function getCurrentStatePlayer() {
 
 // ** below are functions for public usage, they include all the player actions
 
+export async function getCurrentTrack() {
+
+    getPlayer().getCurrentState().then(state => {
+        if (!state) {
+            console.error('User is not playing music through the Web Playback SDK');
+            return;
+        }
+
+        return state.track_window.current_track;
+    });
+}
+
+export async function getNextTrack() {
+    getPlayer().getCurrentState().then(state => {
+        if (!state) {
+            console.error('User is not playing music through the Web Playback SDK');
+            return;
+        }
+
+        return state.track_window.next_track;
+    });
+}
+
+
 export async function pausePlayer() {
     player.pause().then(() => {
         console.log('Paused!');
@@ -149,4 +173,8 @@ export async function seekPositionPlayer(positionInSeconds) {
 
 export async function preparePlayer() {
     initializePlayer(getAccessToken());
+}
+
+export async function playMusicInPlayer(typeOfContent, contentId) {
+    playMusic(getAccessToken(), typeOfContent, contentId);
 }

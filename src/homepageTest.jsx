@@ -1,4 +1,4 @@
-import '/Users/s2400057/Documents/my_studies/software developement/projects/JAMPA/src/Homepage.css'
+import "src/Homepage.css"
 export const Homepage = () => {
 
     return (

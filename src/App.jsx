@@ -4,7 +4,7 @@ import './App.css'
 import { useState, useEffect } from 'react'
 import { RouterProvider, Routes, useNavigate, Route } from 'react-router-dom'
 import { router } from "./routes/appRoute.jsx"
-import { getAccessToken, login, checkAccessToken } from './AuthTokenApi/AuthTokenApi.js'
+import { login } from './AuthTokenApi/AuthTokenApi.js'
 import InitPlayerTest from './InitPlayerTest.jsx'
 import LoginScreen from './LoginScreen/LoginScreen2.jsx'
 import TestModal from './TestModal.jsx'
