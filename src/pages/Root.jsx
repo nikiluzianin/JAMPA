@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Header from "../viewlayout/Header/Header"
 import Footer from "../viewlayout/Footer/Footer";
+import { pausePlayer, preparePlayer, resumePlayer, checkPlayer } from '../Player/Player'
+
 
 const Root = () => {
 
@@ -15,6 +17,8 @@ const Root = () => {
                 <Footer />
             </div>
         );*/
+
+    preparePlayer();
 
     return (
         <div>

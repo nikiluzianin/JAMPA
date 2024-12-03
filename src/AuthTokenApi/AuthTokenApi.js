@@ -11,7 +11,7 @@ export function getAccessToken() {
     return localStorage.getItem('access_token');
 }
 
-console.log("runs");
+// console.log("runs");
 //checkAccessToken();
 
 const lala = await checkAccessToken();

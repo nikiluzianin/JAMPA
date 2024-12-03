@@ -36,7 +36,6 @@ function App() {
     if (loggedIn) {
       navigate('/home');
     }
-    console.log("logged in effect");
   }, [loggedIn])
 
   const loginAction = () => {
@@ -48,12 +47,12 @@ function App() {
       v7_startTransition: true,
     }} />*/
     <Routes>
+      <Route path='/login' element={<LoginScreen click={loginAction} />} />
       <Route path='/' element={<Root />}>
         <Route path='/home' element={<TestModal />} />
         <Route path='/initPlayer' element={<InitPlayerTest />} />
         <Route path="/*" element={<ErrorPage />} />
       </Route>
-      <Route path='/login' element={<LoginScreen click={loginAction} />} />
     </Routes>
   )
 }
