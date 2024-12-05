@@ -3,6 +3,7 @@ import './CardPanel.css';
 
 /* cards = [
     {
+        id: ""
         imageHref: "",
         name: ""
     },

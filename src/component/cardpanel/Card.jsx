@@ -1,4 +1,4 @@
-export const Card = ({name, imageHref}) => {
+export const Card = ({id, name, imageHref}) => {
     /* return (
         <div className="card" style="width: 18rem;">
             <img src={imageHref} className="card-img-top" alt={name} />
@@ -7,8 +7,11 @@ export const Card = ({name, imageHref}) => {
             </div>
         </div>
     ) */
+   const onClickCard = () => {
+    console.log(id)
+   }
     return (
-        <div className={"detail-card"}>
+        <div onClick={onClickCard} className={"detail-card"}>
             <img src={imageHref} alt={name} />
             <div>{name}</div>
         </div>

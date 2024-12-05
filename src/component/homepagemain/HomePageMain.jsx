@@ -14,16 +14,30 @@ export const HomePageMain = () =>{
         searchSpotify("top songs").then(response => setSerachResult(response))
     }, []);
 
-    const albums = searchResult ? searchResult.albums.items.map(albumItem => ({
-        imageHref: albumItem.images[0].url,
-        name: albumItem.name,
-    })) : [];
     const moodButtonClickHandler = (mood) => {
         setShowModal(true);
         setMood(mood)
     };
 
-    const moods = ["Happy", "Angry", "Sad", "Holiday", "Party", "Laugh", "Bored", "Sad", "Natural"]
+    const albums = searchResult ? searchResult.albums.items.map(albumItem => ({   // preparing top albums cards
+        id: albumItem.id,
+        imageHref: albumItem.images[0].url,
+        name: albumItem.name,
+    })) : [];
+
+    const artists = searchResult ? searchResult.artists.items.map(artistItem => ({  //preparing top artists cards
+        id: artistItem.id,
+        imageHref: artistItem.images[0].url,
+        name: artistItem.name,
+    })) : [];
+
+    const tracks = searchResult ? searchResult.tracks.items.map(trackItem => ({  //preparing top tracks cards
+        id: trackItem.id,
+        imageHref: trackItem.album.images[0].url,
+        name: trackItem.name,
+    })) : [];
+
+    const moods = ["Happy", "Angry", "Sad", "Holiday", "Party", "Laugh", "Bored", "Sad", "Natural"]  // mood buttons
 
     return (
         <>
@@ -34,7 +48,9 @@ export const HomePageMain = () =>{
                 )}
             </div>
             <div>
-                <CardPanel header={"Albums"} cards={albums}/>
+                <CardPanel header={"Albums"} cards={albums} />
+                <CardPanel header={"Artists"} cards={artists} />
+                <CardPanel header={"Tracks"} cards={tracks} />
             </div>
             
         </div>
