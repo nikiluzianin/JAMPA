@@ -8,7 +8,7 @@ import {AlbumModal} from '../modal/AlbumModal'
 import { ArtistModal } from "../modal/ArtistModal";
 
 
-export const HomePageMain = () =>{
+export const HomePageMain = ({searchQuery}) =>{
     const [showMoodModal, setShowMoodModal] = useState(false);
     const [selectedAlbumId, setSelectedAlbumId] = useState();
     const [selectedArtistId, setSelectedArtistId] = useState();
@@ -16,8 +16,8 @@ export const HomePageMain = () =>{
     const [searchResult, setSerachResult] = useState();
     
     useEffect(() => {
-        searchSpotify("top songs").then(response => setSerachResult(response))
-    }, []);
+        searchSpotify(searchQuery && searchQuery.trim() !== "" ? searchQuery.trim() : "top songs").then(response => setSerachResult(response))
+    }, [searchQuery]);
 
     const moodButtonClickHandler = (mood) => {
         setShowMoodModal(true);
