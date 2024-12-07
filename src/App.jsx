@@ -52,7 +52,6 @@ function App() {
       <Route path='/login' element={<LoginScreen click={loginAction} />} />
       <Route path='/' element={<Root isLoggedin={loggedIn} />}>
         <Route path='/home' element={<Home />} />
-        <Route path='/modal' element={<TestModal />} />
         <Route path='/initPlayer' element={<InitPlayerTest />} />
         <Route path="/*" element={<ErrorPage />} />
       </Route>

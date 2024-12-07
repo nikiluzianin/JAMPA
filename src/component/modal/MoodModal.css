@@ -41,6 +41,10 @@
     text-align: left;
 }
 
+.track-table {
+    width: 100%;
+}
+
 .track-table td,th, tr {
     border-collapse: collapse;
 }

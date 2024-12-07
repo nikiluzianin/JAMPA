@@ -6,23 +6,15 @@ const Home = () => {
 
     const navigate = useNavigate();
 
-    const goToModal = () => {
-        navigate("/modal");
-    }
-
     const goToPlayerTest = () => {
         navigate("/initPlayer");
     }
 
     return (
         <>
+        {/* update this part to insert header, footer, sidebaar and main, below compåonent is for main */}
         <HomePageMain />
-        {/* <div className='content'>
-            <h3>Content</h3>
-            <button className="button1" onClick={goToModal}>go to modal</button>
-            <button className="button2" onClick={goToPlayerTest}>go to player test</button>
-
-        </div> */}
+        <button className="button2" onClick={goToPlayerTest}>go to player test</button>
         </>
     );
 }
