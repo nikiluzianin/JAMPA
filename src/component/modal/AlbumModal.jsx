@@ -23,10 +23,7 @@ export const AlbumModal = ({albumId, onClose}) => {
 
     const albumName = albumResponse ? albumResponse.name : "";
     return (
-        <>
-            <Modal title={albumName} onClose={onClose} tracks={albumTracks} />
-        </>
-        
+        <Modal title={albumName} onClose={onClose} tracks={albumTracks} />      
     )
 
 }

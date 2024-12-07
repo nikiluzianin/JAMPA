@@ -5,11 +5,13 @@ import { CardPanel } from "../cardpanel/CardPanel";
 import { searchSpotify } from "../../Playlists/Playlists";
 import '../cardpanel/CardPanel.css';
 import {AlbumModal} from '../modal/AlbumModal'
+import { ArtistModal } from "../modal/ArtistModal";
 
 
 export const HomePageMain = () =>{
     const [showMoodModal, setShowMoodModal] = useState(false);
     const [selectedAlbumId, setSelectedAlbumId] = useState();
+    const [selectedArtistId, setSelectedArtistId] = useState();
     const [mood, setMood] = useState();
     const [searchResult, setSerachResult] = useState();
     
@@ -52,7 +54,7 @@ export const HomePageMain = () =>{
             </div>
             <div>
                 <CardPanel header={"Albums"} cards={albums} selectCard={(id) => setSelectedAlbumId(id)}/>
-                <CardPanel header={"Artists"} cards={artists} selectCard={(id) => {}}/>
+                <CardPanel header={"Artists"} cards={artists} selectCard={(id) => setSelectedArtistId(id)}/>
                 <CardPanel header={"Tracks"} cards={tracks} selectCard={(id) => {}}/>
             </div>
             
@@ -62,6 +64,8 @@ export const HomePageMain = () =>{
             {showMoodModal && <MoodModal mood={mood} onClose={() => setShowMoodModal(false)} />}
             
             {selectedAlbumId && <AlbumModal albumId={selectedAlbumId} onClose={() => setSelectedAlbumId()} />} 
+
+            {selectedArtistId && <ArtistModal artistId={selectedArtistId} onClose={() => setSelectedArtistId()} />}
             
         </div>
     </>
