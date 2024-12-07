@@ -96,6 +96,37 @@ export const createPlaylist = async (playlistName, playlistDescription, isPublic
     }
 }
 
+export const getAlbum = async (albumId) => {   // get album data
+    try {
+        const response = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
+            headers: {
+                'Authorization': `Bearer ${getAccessToken()}`
+            }
+        });
+        const data = await response.json();
+        console.log(`fetch data for album ${albumId}`);
+        return data;
+    } catch (error) {
+        console.error(error.message);
+        throw(error);
+    }  
+}
+
+export const getArtistTopTracks = async (artistId) => {  // get Artist top tracks data
+   try {
+        const response = await fetch(`https://api.spotify.com/v1/artists/${artistId}/top-tracks`,{
+            headers: {
+                'Authorization': `Bearer ${getAccessToken()}`
+            }
+        });
+        const data = await response.json();
+        console.log(`fetch data from get artist top tracks ${artistId}`);
+        return data;
+   } catch (error) {
+        console.error(error.message);
+        throw(error);
+   }
+}
 
 
 

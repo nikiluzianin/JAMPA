@@ -1,0 +1,36 @@
+.card-panel {
+    color: white; 
+}
+
+.scrollable-cards {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    gap: 15px;
+}
+
+.detail-card {
+    height: 220px;
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px;
+    background: gray;
+}
+
+.card-albums {
+    background: #F26378;
+}
+
+.card-artists {
+    background: #01B2B0;
+}
+
+.card-tracks {
+    background: #E87EE8;
+}
+
+.detail-card img {
+    height: 150px;
+    width: 180px;
+}

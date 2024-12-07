@@ -27,7 +27,7 @@ export const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
             <td className={"track"}>
                 <div className={"track-name"}>
                     <div className={"image-play-icon"}>
-                        {/* <i className={"bi bi-play-circle play-icon"}></i>   play pause icon */}
+                        <i className={"bi bi-play-circle play-icon"}></i>
                         <img className={"track-image"} src={albumImageUrl}></img>
                        
                     </div>
