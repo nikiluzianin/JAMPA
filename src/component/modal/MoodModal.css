@@ -11,16 +11,6 @@
 
 }
 
-/* .modal {
-    background-color: bisque;
-    color: #333;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #333;
-    padding: 2rem;
-    width: 80vw;
-    position: relative;
-} */
-
 .header-image {
     background: url('../../images/happy.jpg');
     height: 250px;
@@ -73,6 +63,7 @@
 
 .image-play-icon {
     position: relative;
+    cursor: default;
 }
 
 .play-icon {
@@ -83,6 +74,7 @@
     color: white;
     background: #8080808f;
     padding-left: 5px;
+    display: none;
 }
 
 .clickable-row {
@@ -91,6 +83,11 @@
 
 .clickable-row:hover {
     background: #7e7e7e;
+
+    .play-icon {
+        display: inherit;
+        cursor: pointer;
+    }
 }
 
 .clickable-row-menu {

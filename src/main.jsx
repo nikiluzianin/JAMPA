@@ -5,6 +5,7 @@ import './index.css';
 import App from './App.jsx';
 import InitPlayerTest from './InitPlayerTest.jsx';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
 
