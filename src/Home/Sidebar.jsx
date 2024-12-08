@@ -1,34 +1,35 @@
 export const Sidebar = () => {
     return (
         <div className="homepage">
-            <main className="d-flex">
+            <main>
+                {/* Sidebar */}
                 <div
-                    className="sidebar px-sm-2 px-0"
+                    className="sidebar"
                     style={{
+                        position: 'fixed',
+                        top: '10%',
+                        left: 0,
                         backgroundColor: '#343a40',
                         width: '20%',
-                        minHeight: '60vh',
+                        height: 'auto',
+                        minHeight: '90vh', // Remaining height after header
                     }}
                 >
-                    <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-
+                    <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
                         <ul
                             className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
                             id="menu"
                         >
                             <li className="nav-item">
-                                <button><i class="bi bi-plus"></i> create a playlist</button>
+                                <button className="btn btn-light w-100">
+                                    <i className="bi bi-plus"></i> Create a Playlist
+                                </button>
                             </li>
                         </ul>
-                        <hr />
+                        <hr className="w-100 text-white" />
                     </div>
-                </div>
-                <div className="content flex-grow-1 bg-primary text-white p-3">
-                    <h1>Content Section</h1>
-                    <p>This is the content area.</p>
                 </div>
             </main>
         </div>
-
-    )
-}
+    );
+};
