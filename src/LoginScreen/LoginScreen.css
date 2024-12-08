@@ -1,0 +1,56 @@
+/* Full-screen container styling */
+.login-screen-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    background-color: #000; /* Background color */
+    color: white; /* Text color */
+  }
+  
+  /* Background layer */
+  .background-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Login content styling */
+  .login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  /* App title styling */
+  .app-title {
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5rem;
+  }
+  
+  /* Button container styling */
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  /* Button styling */
+  .connect-btn {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0.5rem 2rem;
+  }
+  
