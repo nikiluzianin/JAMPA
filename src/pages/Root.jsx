@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
-import Header from "../viewlayout/Header/Header"
-import Footer from "../viewlayout/Footer/Footer";
+import { Header } from "../Home/Header"
+import { Footer } from "../Home/Footer";
+import { Sidebar } from "../Home/Sidebar"
 import SideSection from "../viewlayout/SideSection/SideSection"
 import { preparePlayer } from '../Player/Player'
 
@@ -13,7 +14,7 @@ const Root = ({ isLoggedin }) => {
         <div>
             <main>
                 <Header />
-                <SideSection />
+                <Sidebar />
                 <p>It is in root </p>
                 <Outlet />
                 <Footer />
