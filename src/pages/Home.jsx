@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { HomePageMain } from "../component/homepagemain/HomePageMain";
-import { Homepage } from "../homepageTest";
+import { Homepage } from "../component/Home/HomePage/homepageTest";
 
 
 const Home = () => {

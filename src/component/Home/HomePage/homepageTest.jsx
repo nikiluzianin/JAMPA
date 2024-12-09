@@ -1,7 +1,7 @@
-import '/Users/s2400057/Documents/my_studies/software developement/projects/JAMPA/src/Homepage.css'
-import { Header } from './Home/Header'
-import { Sidebar } from './Home/Sidebar'
-import { HomePageMain } from './component/homepagemain/HomePageMain'
+import './Homepage.css'
+import { Header } from '../Header/Header'
+import { Sidebar } from '../SideBar/Sidebar'
+import { HomePageMain } from '../homepagemain/HomePageMain'
 export const Homepage = () => {
 
     return (

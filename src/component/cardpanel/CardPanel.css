@@ -1,36 +1,68 @@
 .card-panel {
     color: white; 
+    padding: 20px;
+    background-color: #1e1e1e; /* Matches the dark background */
+    border-radius: 10px;
+    margin-bottom: 30px; /* Separate each card section */
 }
 
+/* Scrollable Cards */
 .scrollable-cards {
-    width: 100%;
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: hidden;
+    overflow-x: auto;
     gap: 15px;
+    padding: 10px 0;
+    scrollbar-width: thin;
+    scrollbar-color: #F26378 transparent;
+    max-width: 100%;
 }
 
+.scrollable-cards::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scrollable-cards::-webkit-scrollbar-thumb {
+    background: #F26378;
+    border-radius: 4px;
+}
+
+.scrollable-cards::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Updated Card Styling */
 .detail-card {
     height: 220px;
     width: 200px;
-    border-radius: 10px;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #252525, #2e2e2e); /* Subtle gradient for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(255, 255, 255, 0.1); /* Subtle highlight and shadow */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
-    background: gray;
-}
-
-.card-albums {
-    background: #F26378;
-}
-
-.card-artists {
-    background: #01B2B0;
-}
-
-.card-tracks {
-    background: #E87EE8;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .detail-card img {
     height: 150px;
     width: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.detail-card:hover {
+    transform: translateY(-5px); /* Adds lift effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8), 0 3px 6px rgba(255, 255, 255, 0.15);
+    background: linear-gradient(145deg, #2e2e2e, #3a3a3a); /* Slightly brighter gradient on hover */
+}
+
+.detail-card div {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    color: #F26378; /* Accent color for text */
 }
