@@ -3,15 +3,17 @@
 import './App.css'
 import { useState, useEffect } from 'react'
 import { RouterProvider, Routes, useNavigate, Route } from 'react-router-dom'
-import { router } from "./routes/appRoute.jsx"
-import { login } from './AuthTokenApi/AuthTokenApi.js'
+import { getAccessToken, login, checkAccessToken } from './AuthTokenApi/AuthTokenApi.js'
 import InitPlayerTest from './InitPlayerTest.jsx'
 import LoginScreen from './LoginScreen/LoginScreen2.jsx'
 import TestModal from './TestModal.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import Root from './pages/Root.jsx'
 import Home from './pages/Home.jsx'
+<<<<<<< HEAD
 //import { HomePage } from './component/homePage/HomePage.jsx'
+=======
+>>>>>>> main
 
 
 
@@ -56,7 +58,6 @@ function App() {
       <Route path='/login' element={<LoginScreen click={loginAction} />} />
       <Route path='/' element={<Root isLoggedin={loggedIn} />}>
         <Route path='/home' element={<Home />} />
-        <Route path='/modal' element={<TestModal />} />
         <Route path='/initPlayer' element={<InitPlayerTest />} />
         <Route path="/*" element={<ErrorPage />} />
       </Route>

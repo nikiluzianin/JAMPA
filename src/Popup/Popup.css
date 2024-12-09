@@ -1,0 +1,86 @@
+/* General Container Styling */
+.popup-container {
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 0 1rem;
+  }
+  
+  /* Playback Controls */
+  .playback-container {
+    text-align: center;
+    margin: auto;
+  }
+  
+  .playback-buttons img {
+    width: 1rem;
+    cursor: pointer;
+  }
+  
+  .progress-bar-container {
+    max-width: 500px;
+    width: 75%;
+    height: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .progress-bar {
+    width: 20%;
+    background-color: #28a745;
+  }
+  
+  /* Song Info */
+  .song-info {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .song-info img {
+    width: 3rem;
+  }
+  
+  .song-info p {
+    margin-bottom: 0;
+  }
+  
+  .song-info-large {
+    display: flex;
+  }
+  
+  /* Volume Controls */
+  .volume-container {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.75;
+  }
+  
+  .volume-container img {
+    width: 1rem;
+  }
+  
+  .volume-bar {
+    width: 5rem;
+    height: 0.5rem;
+    background-color: #6c757d;
+  }
+  
+  .volume-bar-filled {
+    width: 50%;
+    background-color: #adb5bd;
+  }
+  
+  @media (min-width: 992px) {
+    .song-info {
+      display: flex;
+    }
+  
+    .volume-container {
+      display: flex;
+    }
+  }
+  

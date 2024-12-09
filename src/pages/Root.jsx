@@ -13,11 +13,7 @@ const Root = ({ isLoggedin }) => {
     return (
         <div>
             <main>
-                <Header />
-                <Sidebar />
-                <p>It is in root </p>
                 <Outlet />
-                <Footer />
             </main>
         </div>
     )

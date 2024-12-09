@@ -5,42 +5,31 @@ import { searchSpotify } from '../../Playlists/Playlists';
 import { useEffect, useState } from 'react';
 
 
-export const MoodModal = ({mood, setShowModal}) => {
-    const [trackItems, setTrackItems] = useState([]);
+export const MoodModal = ({mood, onClose}) => {
+    /* const [trackItems, setTrackItems] = useState([]); */
+    const [searchResult, setSerachResult] = useState();
     
       
     useEffect(() => {
         searchSpotify(mood).then(response => {
-            setTrackItems(response.tracks.items);
+            setSerachResult(response);
         })
     }, [mood]);
 
+    const tracks = searchResult ? searchResult.tracks.items.map(item => ({
+        id: item.id,
+        name: item.name,
+        imageUrl: item.album.images[0].url,
+        duration: item.duration_ms,
+        artist: item.artists[0].name,
+    }))
+    : [];
+    
     return (
-        <Modal title={mood} setShowModal={setShowModal} >
-            <>
-                <div id={"songList"} className={'header-image'}></div>
-                <div className={"modal-dialog modal-dialog-scrollable"}>
-                    <table className={"track-table"}>
-                        <tbody>
-                        <tr>
-                            <th>Track</th>
-                            <th>Artist</th>
-                            <th>Duration</th>
-                        </tr>
-                        {trackItems.map(track => 
-                            <TrackRow 
-                                key={track.id}
-                                trackName={track.name} 
-                                albumImageUrl={track.album.images[0].url} 
-                                duration={track.duration_ms}
-                                artistName={track.artists[0].name}
-                            />
-                        )}
-                        </tbody>
-                    </table>  
-                </div>
-            </>
-        </Modal>
+        <>
+            <Modal title={mood} onClose={onClose} tracks={tracks} />
+        </>
+        
     )
 }
 

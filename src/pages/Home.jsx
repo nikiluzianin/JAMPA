@@ -1,25 +1,22 @@
 import { useNavigate } from "react-router-dom";
+import { HomePageMain } from "../component/homepagemain/HomePageMain";
+import { Homepage } from "../homepageTest";
 
 
 const Home = () => {
 
     const navigate = useNavigate();
 
-    const goToModal = () => {
-        navigate("/modal");
-    }
-
     const goToPlayerTest = () => {
         navigate("/initPlayer");
     }
 
     return (
-        <div className='content'>
-            <h3>Content</h3>
-            <button className="button1" onClick={goToModal}>go to modal</button>
+        <>
+            {/* update this part to insert header, footer, sidebaar and main, below compåonent is for main */}
+            <Homepage />
             <button className="button2" onClick={goToPlayerTest}>go to player test</button>
-
-        </div>
+        </>
     );
 }
 
