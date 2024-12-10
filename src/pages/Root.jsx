@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { Header } from "../Home/Header"
-import { Footer } from "../Home/Footer";
-import { Sidebar } from "../Home/Sidebar"
+import { Header } from "../component/Home/Header/Header"
+import { Footer } from "../component/Home/Footer/Footer";
+import { Sidebar } from "../component/Home/SideBar/Sidebar"
 import Popup from "../Popup/Popup"
 import { preparePlayer, playMusicInPlayer } from '../Player/Player'
-import "../Homepage.css"
+import "../component/Home/homepagemain/HomePageMain.css"
 import { useState } from "react";
 
 
@@ -21,13 +21,18 @@ const Root = ({ isLoggedin }) => {
 
     return (
         <div className='homepage'>
-
-            <Header />
-            {/*<Sidebar />*/}
-
+            <header>
+                <Header />
+            </header>
             <main>
-                <Outlet context={startPlayingContent} />
+                <div className='sidebar'>
+                    <Sidebar />
+                </div>
+                <div className='content'>
+                    <Outlet context={startPlayingContent} />
+                </div>
             </main>
+
             <Popup />
 
             < Footer />
