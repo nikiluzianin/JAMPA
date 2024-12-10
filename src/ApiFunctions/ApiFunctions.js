@@ -23,8 +23,9 @@ export async function getTrack(token, trackId) {
 
 export async function playMusic(token, typeOfContext, contextId) {
 
+    let result;
     if (!typeOfContext) {
-        const result = await fetch("https://api.spotify.com/v1/me/player/play", {
+        result = await fetch("https://api.spotify.com/v1/me/player/play", {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -32,7 +33,7 @@ export async function playMusic(token, typeOfContext, contextId) {
             }
         });
     } else {
-        const result = await fetch("https://api.spotify.com/v1/me/player/play", {
+        result = await fetch("https://api.spotify.com/v1/me/player/play", {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -44,7 +45,7 @@ export async function playMusic(token, typeOfContext, contextId) {
 
         });
     }
-    // return await result.json();
+    return await result.json();
 }
 // gets plays a song that was played before or plays selected content
 
@@ -88,3 +89,7 @@ export async function transferPlaybackTo(token, deviceId) {
         })
     });
 }
+
+
+
+

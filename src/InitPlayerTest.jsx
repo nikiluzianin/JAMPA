@@ -6,7 +6,7 @@ import './ApiFunctions/ApiFunctions.js'
 import { fetchProfile, getTrack, playMusic, getAvailableDevices, startPlayback, pausePlayback } from './ApiFunctions/ApiFunctions.js' // Some API calls to understand how the work
 
 import './Player/Player.js'
-import { pausePlayer, preparePlayer, resumePlayer, checkPlayer } from './Player/Player.js'
+import { pausePlayer, preparePlayer, resumePlayer, checkPlayer, playMusicInPlayer } from './Player/Player.js'
 
 
 
@@ -26,7 +26,8 @@ function InitPlayerTest() {
     }
 
     const playPlaylistAction = () => {
-        playMusic(getAccessToken(), "playlist", "37i9dQZF1E8BgFtiYSPVv9").then(response => console.log(response));
+        playMusicInPlayer("playlist", "37i9dQZF1E8BgFtiYSPVv9");
+        // playMusic(getAccessToken(), "playlist", "37i9dQZF1E8BgFtiYSPVv9").then(response => console.log(response));
     }
 
     const checkDevicesAction = () => {

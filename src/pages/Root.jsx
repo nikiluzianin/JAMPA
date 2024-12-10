@@ -1,16 +1,41 @@
 import { Outlet } from "react-router-dom";
-import { preparePlayer } from '../Player/Player'
+import { Header } from "../component/Home/Header/Header"
+import { Footer } from "../component/Home/Footer/Footer";
+import { Sidebar } from "../component/Home/SideBar/Sidebar"
+import Popup from "../Popup/Popup"
+import { preparePlayer, playMusicInPlayer } from '../Player/Player'
+import "../component/Home/homepagemain/HomePageMain.css"
+import { useState } from "react";
 
 
 const Root = ({ isLoggedin }) => {
 
+    const [currentMedia, setCurrentMedia] = useState([,]);
+
     if (isLoggedin) preparePlayer();
 
+    const startPlayingContent = (typeOfContent, contentId) => {
+        setCurrentMedia([typeOfContent, contentId]);
+        playMusicInPlayer(typeOfContent, contentId);
+    }
+
     return (
-        <div>
+        <div className='homepage'>
+            <header>
+                <Header />
+            </header>
             <main>
-                <Outlet />
+                <div className='sidebar'>
+                    <Sidebar />
+                </div>
+                <div className='content'>
+                    <Outlet context={startPlayingContent} />
+                </div>
             </main>
+
+            <Popup />
+
+            < Footer />
         </div>
     )
 }

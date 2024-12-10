@@ -1,10 +1,11 @@
-import './Homepage.css'
+import "./Homepage.css"
 import { Header } from '../Header/Header'
 import { Sidebar } from '../SideBar/Sidebar'
 import { HomePageMain } from '../homepagemain/HomePageMain'
 export const Homepage = () => {
 
     return (
+        /*
         <div className='homepage'>
             <header>
                 <Header></Header>
@@ -19,6 +20,6 @@ export const Homepage = () => {
             </main>
 
 
-        </div>
+        </div>*/
     )
 }
