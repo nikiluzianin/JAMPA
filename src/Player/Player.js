@@ -103,13 +103,13 @@ export async function preparePlayer() {
 
 export async function getCurrentTrack() {
 
-    getPlayer().getCurrentState().then(state => {
+    getPlayer().getCurrentState().then(async (state) => {
         if (!state) {
             console.error('User is not playing music through the Web Playback SDK');
-            return;
-        }
 
-        return state.track_window.current_track;
+        }
+        console.log(state.track_window.current_track.name);
+        return await state.track_window.current_track;
     });
 }
 // returns object that has all the info about current track
