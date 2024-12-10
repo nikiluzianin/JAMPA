@@ -6,6 +6,7 @@ import Popup from "../Popup/Popup"
 import { preparePlayer, playMusicInPlayer } from '../Player/Player'
 import "../component/Home/homepagemain/HomePageMain.css"
 import { useState } from "react";
+import '../component/Home/HomePage/Homepage.css'
 
 
 const Root = ({ isLoggedin }) => {
