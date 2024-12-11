@@ -1,0 +1,51 @@
+svg{
+    width: 500px;
+    margin-bottom: 200px;
+}
+
+@keyframes jump {
+    0% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-12px);  /* Jump higher */
+    }
+    50% {
+      transform: translateY(0);
+    }
+    70% {
+      transform: translateY(-6px);  /* Optional smaller secondary bounce */
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Apply the jump animation to each path */
+  .cls-1 {
+    animation: jump 1s ease-in-out forwards; /* Animation duration 1s, no loop */
+  }
+  
+  /* Add delays for each path to make them jump in sequence */
+  .cls-1:nth-child(1) {
+    animation-delay: 0s;  /* First path jumps immediately */
+  }
+  
+  .cls-1:nth-child(2) {
+    animation-delay: 0.1s;  /* Second path jumps with 0.1s delay */
+  }
+  
+  .cls-1:nth-child(3) {
+    animation-delay: 0.2s;  /* Third path jumps with 0.2s delay */
+  }
+  
+  .cls-1:nth-child(4) {
+    animation-delay: 0.3s;  /* Fourth path jumps with 0.3s delay */
+  }
+  
+  .cls-1:nth-child(5) {
+    animation-delay: 0.4s;  /* Fifth path jumps with 0.4s delay */
+  }
+
+
+  
