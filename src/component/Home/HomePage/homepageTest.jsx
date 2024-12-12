@@ -2,6 +2,7 @@
 import { Header } from '../Header/Header'
 import { Sidebar } from '../SideBar/Sidebar'
 import { HomePageMain } from '../homepagemain/HomePageMain'
+
 export const Homepage = () => {
 
     return (
