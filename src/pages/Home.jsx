@@ -5,7 +5,7 @@ import { HomePageMain } from "../component/Home/homepagemain/HomePageMain";
 const Home = () => {
 
 
-    const startPlayingContent = useOutletContext();
+    const {startPlayingContent, searchQuery} = useOutletContext();
     const navigate = useNavigate();
 
     const startPlayingMyPlalist = () => {
@@ -15,7 +15,7 @@ const Home = () => {
     return (
         <>
             {/* update this part to insert header, footer, sidebaar and main, below compåonent is for main */}
-            <HomePageMain startPlayingContent={startPlayingContent} />
+            <HomePageMain startPlayingContent={startPlayingContent} searchQuery={searchQuery}/>
             <button className="button2" onClick={startPlayingMyPlalist}>go to player test</button>
         </>
     );

@@ -15,7 +15,12 @@ export const CardPanel = ({ header, cards, selectCard }) => {
         <div className={"card-panel"}>
             <h3>{header}</h3>
             <div className={"scrollable-cards"}>
-                {cards.map((card, index) => <Card key={`card-detail-${index}`} id={card.id} name={card.name} imageHref={card.imageHref} selectCard={selectCard}
+                {cards.map((card, index) => <Card 
+                    key={`card-detail-${index}`} 
+                    id={card.id} 
+                    name={card.name} 
+                    imageHref={card.imageHref} 
+                    selectCard={selectCard}
                 />)}
             </div>
 

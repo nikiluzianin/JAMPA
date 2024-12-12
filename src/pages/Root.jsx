@@ -11,6 +11,7 @@ import usePlayer from "../Player/usePlayer";
 
 
 const Root = ({ isLoggedin }) => {
+    const [searchQuery, setSearchQuery] = useState();
 
     const {
         currentTrack,
@@ -35,17 +36,22 @@ const Root = ({ isLoggedin }) => {
         playMusicInPlayer(typeOfContent, contentId);
     }
 
+    const context = {
+        startPlayingContent: startPlayingContent,
+        searchQuery: searchQuery,
+    };
+
     return (
         <div className='homepage'>
             <header>
-                <Header />
+                <Header searchInput={(query) => setSearchQuery(query)}/>
             </header>
             <main>
                 <div className='sidebar'>
                     {/*<Sidebar />*/}
                 </div>
                 <div className='content'>
-                    <Outlet context={startPlayingContent} />
+                    <Outlet context={context} />
                 </div>
             </main>
 
