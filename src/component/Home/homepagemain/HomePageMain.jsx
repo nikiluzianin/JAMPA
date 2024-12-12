@@ -7,7 +7,7 @@ import '../../cardpanel/CardPanel.css';
 import { AlbumModal } from '../../modal/AlbumModal';
 import { ArtistModal } from "../../modal/ArtistModal";
 
-export const HomePageMain = ({ searchQuery }) => {
+export const HomePageMain = ({searchQuery}) => {
     const [showMoodModal, setShowMoodModal] = useState(false);
     const [selectedAlbumId, setSelectedAlbumId] = useState();
     const [selectedArtistId, setSelectedArtistId] = useState();
@@ -26,19 +26,19 @@ export const HomePageMain = ({ searchQuery }) => {
 
     const albums = searchResult ? searchResult.albums.items.map(albumItem => ({
         id: albumItem.id,
-        imageHref: albumItem.images[0].url,
+        imageHref: albumItem.images[0]?.url,
         name: albumItem.name,
     })) : [];
 
     const artists = searchResult ? searchResult.artists.items.map(artistItem => ({
         id: artistItem.id,
-        imageHref: artistItem.images[0].url,
+        imageHref: artistItem.images[0]?.url,
         name: artistItem.name,
     })) : [];
 
     const tracks = searchResult ? searchResult.tracks.items.map(trackItem => ({
         id: trackItem.id,
-        imageHref: trackItem.album.images[0].url,
+        imageHref: trackItem.album.images[0]?.url,
         name: trackItem.name,
     })) : [];
 

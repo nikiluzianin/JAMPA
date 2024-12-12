@@ -1,6 +1,13 @@
 import logo from '../../../../public/logo.svg';
 
-export const Header = () => {
+export const Header = ({searchInput}) => {
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const searchValue = formData.get('search');
+        searchInput(searchValue);
+    };
     return (
         <div>
             <nav className="navbar navbar-dark bg-dark" style={{ height: '10vh' }}>
@@ -11,14 +18,15 @@ export const Header = () => {
                      }} />
                     </a>
                 </div>
-                <form className="form-inline mx-auto w-50 d-flex align-items-center">
+                <form onSubmit={handleSubmit} className="form-inline mx-auto w-50 d-flex align-items-center">
                     <i className="bi bi-search text-white me-2"></i>
                     <input
                         className="form-control w-100 bg-transparent border border-white text-white"
+                        name="search"
                         type="search"
                         placeholder="Search"
                         aria-label="Search"
-                        style={{ boxShadow: 'none' }}
+                        style={{ boxShadow: 'none' }}      
                     />
                 </form>
             </nav>
