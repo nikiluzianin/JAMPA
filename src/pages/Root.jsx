@@ -7,7 +7,7 @@ import { Popup, updatePlayerInfo } from "../Popup/Popup"
 import "../component/Home/homepagemain/HomePageMain.css"
 import { useEffect, useState } from "react";
 import '../component/Home/HomePage/Homepage.css'
-import PlayerNew from "../Player/PlayerNew";
+import usePlayer from "../Player/usePlayer";
 
 
 const Root = ({ isLoggedin }) => {
@@ -22,7 +22,7 @@ const Root = ({ isLoggedin }) => {
         nextTrackPlayer,
         previousTrackPlayer,
         setPlayerVolume,
-    } = PlayerNew();
+    } = usePlayer();
 
     if (isLoggedin) preparePlayer();
 

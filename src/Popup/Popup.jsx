@@ -12,14 +12,16 @@ export const updatePlayerInfo = (currentTrack, playerVolume) => {
 
     //console.log(currentTrack.album.images[0].url);
   }
-  //console.log(playerVolume);
-
-  //console.log(document.getElementById("volumebar"));
-  document.getElementById("volumebar").width = "70%";
+  document.getElementById("volumeRange").value = playerVolume;
 }
 
 
 export const Popup = ({ togglePlayer, nextTrackPlayer, previousTrackPlayer, setPlayerVolume, isPaused }) => {
+
+  const changeVolume = (e) => {
+    console.log(document.getElementById("volumeRange").value);
+    setPlayerVolume(document.getElementById("volumeRange").value);
+  }
 
   return (
     <div className="popup-container">
@@ -51,11 +53,11 @@ export const Popup = ({ togglePlayer, nextTrackPlayer, previousTrackPlayer, setP
       {/* Volume Controls */}
       <div className="volume-container">
         <img src="src/Popup/volume.png" alt="Volume" />
-        <div className="volume-bar progress">
-          <div id="volumebar" className="volume-bar-filled progress-bar" ></div>
-        </div>
+        <input type="range" min="0" max="100" className="form-range" id="volumeRange" onChange={changeVolume}></input>
+
+
       </div>
-    </div >
+    </div>
   );
 };
 
