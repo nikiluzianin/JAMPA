@@ -61,14 +61,6 @@ const usePlayer = () => {
                 }
 
                 setCurrentTrack(await state.track_window.current_track);
-                // console.log(await state.track_window.current_track);
-                //setTrack(state.track_window.current_track);
-                //setPaused(state.paused);
-
-                /*player.getCurrentState().then(state => {
-                    (!state) ? setActive(false) : setActive(true)
-                });*/
-
             }));
 
             newPlayer.connect();

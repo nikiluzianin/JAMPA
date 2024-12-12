@@ -19,7 +19,6 @@ export const updatePlayerInfo = (currentTrack, playerVolume) => {
 export const Popup = ({ togglePlayer, nextTrackPlayer, previousTrackPlayer, setPlayerVolume, isPaused }) => {
 
   const changeVolume = (e) => {
-    console.log(document.getElementById("volumeRange").value);
     setPlayerVolume(document.getElementById("volumeRange").value);
   }
 
@@ -27,7 +26,7 @@ export const Popup = ({ togglePlayer, nextTrackPlayer, previousTrackPlayer, setP
     <div className="popup-container">
       {/* Song Info */}
       <div className="song-info">
-        <img id="songpic" src="src/Popup/img12.jpg" alt="Album Art" />
+        <img id="songpic" src="src/Popup/white-question-mark.svg" alt="Album Art" />
         <div>
           <p id="songname">Nothing</p>
           <p id="artistname">Nothing</p>
