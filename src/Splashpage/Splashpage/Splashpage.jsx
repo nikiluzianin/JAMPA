@@ -15,7 +15,7 @@ const Splashpage = props => {
         <div className='loginpage'>
             <Logo/>
             <h2 style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: '700', marginTop:-100 }}>what's your vibe?</h2>
-            <button onClick={loginActionWithRedirect} style={{ marginTop:60 }}>ENTER</button>
+            <button onClick={loginActionWithRedirect} style={{ marginTop:60 , borderRadius:15}}>ENTER</button>
         </div>
     )
 }

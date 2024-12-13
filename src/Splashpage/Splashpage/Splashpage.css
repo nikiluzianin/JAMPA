@@ -17,16 +17,19 @@
     left: 0;
     width: 200%; /* Wider than the viewport to create the wave effect */
     height: 200%; /* Taller than the viewport */
-    background: linear-gradient(90deg, rgba(237, 28, 36, 1) 0%, rgba(0, 166, 81, 1) 25%, rgba(0, 174, 239, 1) 50%, rgba(251, 176, 64, 1) 75%, rgba(102, 45, 145, 1) 100%);
+    background: red; /*Fallback color*/
+
+    background: linear-gradient(90deg, rgb(237, 28, 36) 0%, rgba(0, 166, 81, 1) 25%, rgba(0, 174, 239, 1) 50%, rgba(251, 176, 64, 1) 75%, rgba(102, 45, 145, 1) 100%); 
     animation: wave 10s infinite linear;
     transform: rotate(30deg); 
     z-index: -1; /* Ensure it stays in the background */
 }
 
+
 /* animation */
 @keyframes wave {
     0% {
-        transform: rotate(30deg) translateX(0); /*start*/
+        transform: rotate(0.1deg) translateX(0); /*start*/
     }
     100% {
         transform: rotate(30deg) translateX(-50%); 
@@ -36,7 +39,6 @@
 /* Button */
 button {
     padding: 10px;
-    border-radius: 15px;
     border: none;
     margin-top: 200px;
     margin-bottom: 100px;
@@ -44,6 +46,7 @@ button {
     color: rgb(53, 53, 53);
     font-size: 16px;
     cursor: pointer;
+    
 }
 
 button:hover {
