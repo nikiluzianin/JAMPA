@@ -44,20 +44,20 @@ const Root = ({ isLoggedin }) => {
     return (
         <div className='homepage'>
             <header>
-                <Header searchInput={(query) => setSearchQuery(query)}/>
+                <Header searchInput={(query) => setSearchQuery(query)} />
             </header>
             <main>
                 <div className='sidebar'>
-                    {/*<Sidebar />*/}
+                    <Sidebar />
                 </div>
                 <div className='content'>
                     <Outlet context={context} />
+                    <Popup togglePlayer={togglePlayer} nextTrackPlayer={nextTrackPlayer} previousTrackPlayer={previousTrackPlayer} setPlayerVolume={setPlayerVolume} isPaused={isPaused} />
+
+                    < Footer />
                 </div>
             </main>
 
-            <Popup togglePlayer={togglePlayer} nextTrackPlayer={nextTrackPlayer} previousTrackPlayer={previousTrackPlayer} setPlayerVolume={setPlayerVolume} isPaused={isPaused} />
-
-            < Footer />
         </div>
     )
 }
