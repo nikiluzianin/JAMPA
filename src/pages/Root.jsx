@@ -8,10 +8,12 @@ import "../component/Home/homepagemain/HomePageMain.css"
 import { useEffect, useState } from "react";
 import '../component/Home/HomePage/Homepage.css'
 import usePlayer from "../Player/usePlayer";
+import { getUserPlaylists } from "../Playlists/Playlists";
 
 
 const Root = ({ isLoggedin }) => {
     const [searchQuery, setSearchQuery] = useState();
+    const [playListResponse, setPlayListResponse] = useState();
 
     const {
         currentTrack,
@@ -32,6 +34,10 @@ const Root = ({ isLoggedin }) => {
 
     }, [currentTrack]);
 
+    useEffect(() => {
+        getUserPlaylists().then(response => setPlayListResponse(response));
+    }, []);
+
     const startPlayingContent = (typeOfContent, contentId) => {
         playMusicInPlayer(typeOfContent, contentId);
     }
@@ -39,6 +45,7 @@ const Root = ({ isLoggedin }) => {
     const context = {
         startPlayingContent: startPlayingContent,
         searchQuery: searchQuery,
+        playListResponse: playListResponse,
     };
 
     return (

@@ -1,8 +1,12 @@
 import { useState } from "react"
+import { useOutletContext } from "react-router-dom";
 
 
 export const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const {playListResponse} = useOutletContext();
+    
+    const playListNames = playListResponse ? playListResponse.items.map(item => item.name) : [];
 
     const handleMenuToggle = () => {
         console.log("Menu is clicked");
@@ -49,10 +53,7 @@ export const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
                     {isMenuOpen && <div className={"row-menu"}> 
                         {/* TODO: Have to fetch playlist from API and display in the list*/}
                         <ul>
-                            <li>Create playlist</li>
-                            <li>Playlist 1</li>
-                            <li>Playlist 2</li>
-                            <li>Playlist 3</li>
+                            {playListNames.map((name, index) => <li key={index}>{name}</li>)}
                         </ul>
                     </div>}
                 </div>
