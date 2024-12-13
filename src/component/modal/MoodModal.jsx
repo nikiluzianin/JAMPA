@@ -1,6 +1,5 @@
 import './MoodModal.css';
 import { Modal } from './Modal';
-import { TrackRow } from './TrackRow';
 import { searchSpotify } from '../../Playlists/Playlists';
 import { useEffect, useState } from 'react';
 

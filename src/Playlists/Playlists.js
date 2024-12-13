@@ -96,6 +96,23 @@ export const createPlaylist = async (playlistName, playlistDescription, isPublic
     }
 }
 
+// get user playlists
+export const getUserPlaylists = async () => {  
+    try {
+        const response = await fetch(`https://api.spotify.com/v1/me/playlists`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${getAccessToken()}`,
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {   
+        console.error('Error fetching user playlists:', error);
+    }
+}
+
 export const getAlbum = async (albumId) => {   // get album data
     try {
         const response = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
