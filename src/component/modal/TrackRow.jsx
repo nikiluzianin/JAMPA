@@ -1,15 +1,13 @@
-import { useState } from "react"
 import { useOutletContext } from "react-router-dom";
 
 
-export const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+export const TrackRow = ({track, isMenuOpen, setOpenMenuId}) => {
     const {playListResponse} = useOutletContext();
     
     const playListNames = playListResponse ? playListResponse.items.map(item => item.name) : [];
 
     const handleMenuToggle = () => {
-        setIsMenuOpen(!isMenuOpen);
+        setOpenMenuId(track.id);
     }
 
     const msToTime = (durationInMs)=> {
@@ -31,16 +29,16 @@ export const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
                 <div className={"track-name"}>
                     <div className={"image-play-icon"}>
                         <i className={"bi bi-play-circle play-icon"}></i>
-                        <img className={"track-image"} src={albumImageUrl}></img>
+                        <img className={"track-image"} src={track.imageUrl}></img>
                     </div>
-                    <p className={"track-p"}>{shortenName(trackName)}</p>
+                    <p className={"track-p"}>{shortenName(track.name)}</p>
                 </div>
             </td>
             <td className={"artist"}>
-                <p className={"track-p"}>{artistName}</p>
+                <p className={"track-p"}>{track.artist}</p>
             </td>
             <td>
-                <p className={"track-p"}>{msToTime(duration)}</p>
+                <p className={"track-p"}>{msToTime(track.duration)}</p>
             </td>
             <td>
                 <div className={"row-menu-container"}>
