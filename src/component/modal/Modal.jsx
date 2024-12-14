@@ -1,3 +1,4 @@
+import './Modal.css';
 import { TrackRow } from "./TrackRow";
 import { useState } from "react";
 

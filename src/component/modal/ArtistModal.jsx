@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { MoodModal } from "./MoodModal";
 import { getArtistTopTracks } from "../../Playlists/Playlists";
 import { Modal } from "./Modal";
 

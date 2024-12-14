@@ -1,10 +1,6 @@
-import { useOutletContext } from "react-router-dom";
-
+import { PlaylistMenu } from "./PlaylistMenu";
 
 export const TrackRow = ({track, isMenuOpen, setOpenMenuId}) => {
-    const {playListResponse} = useOutletContext();
-    
-    const playListNames = playListResponse ? playListResponse.items.map(item => item.name) : [];
 
     const handleMenuToggle = () => {
         setOpenMenuId(track.id);
@@ -45,11 +41,7 @@ export const TrackRow = ({track, isMenuOpen, setOpenMenuId}) => {
                     <div onClick={handleMenuToggle}>
                         <i className={"bi bi-three-dots-vertical clickable-row-menu"} />
                     </div>
-                    {isMenuOpen && <div className={"row-menu"}> 
-                        <ul>
-                            {playListNames.map((name, index) => <li key={index}>{name}</li>)}
-                        </ul>
-                    </div>}
+                    {isMenuOpen && <PlaylistMenu trackId={track.id} />}
                 </div>
             </td>
             <td ></td>    

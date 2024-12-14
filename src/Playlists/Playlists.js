@@ -145,7 +145,21 @@ export const getArtistTopTracks = async (artistId) => {  // get Artist top track
    }
 }
 
-
+export const addSongToPlaylist = async (playlistId, trackId) => {
+    try {
+        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=spotify:track:${trackId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${getAccessToken()}`
+            }
+        });
+        if(!response.ok) {
+            throw new Error('Error in adding song to playlist' + response.statusText);
+        }
+    } catch (error) {
+        console.error('Error adding song to playlist:', error);
+    }
+}
 
 
 

@@ -1,4 +1,3 @@
-import './MoodModal.css';
 import { Modal } from './Modal';
 import { searchSpotify } from '../../Playlists/Playlists';
 import { useEffect, useState } from 'react';
