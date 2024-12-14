@@ -110,7 +110,11 @@
     width: 200px;
 }
 
-.row-menu h5 {
+.row-menu-header {
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+}
+.row-menu-header h5 {
     text-align: center;
 }
 

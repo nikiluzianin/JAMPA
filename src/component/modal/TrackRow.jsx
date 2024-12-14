@@ -2,8 +2,8 @@ import { PlaylistMenu } from "./PlaylistMenu";
 
 export const TrackRow = ({track, isMenuOpen, setOpenMenuId}) => {
 
-    const handleMenuToggle = () => {
-        setOpenMenuId(track.id);
+    const handleMenuToggle = (trackId) => {
+        setOpenMenuId(trackId);
     }
 
     const msToTime = (durationInMs)=> {
@@ -38,10 +38,10 @@ export const TrackRow = ({track, isMenuOpen, setOpenMenuId}) => {
             </td>
             <td>
                 <div className={"row-menu-container"}>
-                    <div onClick={handleMenuToggle}>
+                    <div onClick={() => handleMenuToggle(track.id)}>
                         <i className={"bi bi-three-dots-vertical clickable-row-menu"} />
                     </div>
-                    {isMenuOpen && <PlaylistMenu trackId={track.id} />}
+                    {isMenuOpen && <PlaylistMenu trackId={track.id} handleMenuToggle={handleMenuToggle}/>}
                 </div>
             </td>
             <td ></td>    

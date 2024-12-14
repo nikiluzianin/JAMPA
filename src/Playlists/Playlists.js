@@ -153,9 +153,10 @@ export const addSongToPlaylist = async (playlistId, trackId) => {
                 'Authorization': `Bearer ${getAccessToken()}`
             }
         });
-        if(!response.ok) {
-            throw new Error('Error in adding song to playlist' + response.statusText);
+        if(response.ok) {
+            return true;
         }
+        throw new Error('Error in adding song to playlist' + response.statusText);
     } catch (error) {
         console.error('Error adding song to playlist:', error);
     }
