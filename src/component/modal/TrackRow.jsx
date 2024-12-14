@@ -9,7 +9,6 @@ export const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
     const playListNames = playListResponse ? playListResponse.items.map(item => item.name) : [];
 
     const handleMenuToggle = () => {
-        console.log("Menu is clicked");
         setIsMenuOpen(!isMenuOpen);
     }
 
@@ -33,9 +32,7 @@ export const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
                     <div className={"image-play-icon"}>
                         <i className={"bi bi-play-circle play-icon"}></i>
                         <img className={"track-image"} src={albumImageUrl}></img>
-                       
                     </div>
-                    
                     <p className={"track-p"}>{shortenName(trackName)}</p>
                 </div>
             </td>
@@ -51,17 +48,14 @@ export const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
                         <i className={"bi bi-three-dots-vertical clickable-row-menu"} />
                     </div>
                     {isMenuOpen && <div className={"row-menu"}> 
-                        {/* TODO: Have to fetch playlist from API and display in the list*/}
                         <ul>
                             {playListNames.map((name, index) => <li key={index}>{name}</li>)}
                         </ul>
                     </div>}
                 </div>
-                
             </td>
             <td ></td>    
         </tr>
         </>
-     
     )
 }
