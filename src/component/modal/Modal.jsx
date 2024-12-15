@@ -34,7 +34,7 @@ const ModalComponent = ({ title, children, onClose }) => {
     }
 ]
  */
-export const Modal = ({title, onClose, tracks}) => {
+export const Modal = ({title, onClose, tracks, hideMenuModal}) => {
    const [openMenuId, setOpenMenuId] = useState(null);
     return (
         <ModalComponent title={title} onClose={onClose} >
@@ -54,6 +54,7 @@ export const Modal = ({title, onClose, tracks}) => {
                                 track={track}
                                 isMenuOpen={openMenuId === track.id}
                                 setOpenMenuId={setOpenMenuId}
+                                hideMenuModal={hideMenuModal}
                             />
                         )}
                         </tbody>

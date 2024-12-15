@@ -1,6 +1,6 @@
 import { PlaylistMenu } from "./PlaylistMenu";
 
-export const TrackRow = ({track, isMenuOpen, setOpenMenuId}) => {
+export const TrackRow = ({track, isMenuOpen, setOpenMenuId, hideMenuModal}) => {
 
     const handleMenuToggle = (trackId) => {
         setOpenMenuId(trackId);
@@ -36,14 +36,14 @@ export const TrackRow = ({track, isMenuOpen, setOpenMenuId}) => {
             <td>
                 <p className={"track-p"}>{msToTime(track.duration)}</p>
             </td>
-            <td>
+            {!hideMenuModal && <td>
                 <div className={"row-menu-container"}>
                     <div onClick={() => handleMenuToggle(track.id)}>
                         <i className={"bi bi-three-dots-vertical clickable-row-menu"} />
                     </div>
                     {isMenuOpen && <PlaylistMenu trackId={track.id} handleMenuToggle={handleMenuToggle}/>}
                 </div>
-            </td>
+            </td>}
             <td ></td>    
         </tr>
         </>
