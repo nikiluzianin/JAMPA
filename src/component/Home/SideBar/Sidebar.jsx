@@ -1,6 +1,7 @@
 import './Sidebar.css';
 import { PlayListModal } from '../../modal/PlayListModal';
 import {useState} from "react";
+import { CreatePlaylist } from '../../createPlaylist/CreatePlaylist';
 
 
 const PlayListItem = ({playlist, isSelected, selectPlaylist}) => (
@@ -10,8 +11,9 @@ const PlayListItem = ({playlist, isSelected, selectPlaylist}) => (
 );
 
 
-export const Sidebar = ({playListResponse}) => {
+export const Sidebar = ({playListResponse, reloadPlayLists}) => {
     const [selectedPlaylist, setSelectedPlaylist] = useState();
+    const [showCreatePlayListModal, setShowCreatePlayListModal] = useState(false);
 
     const selectPlaylist = (playlist) => {
         setSelectedPlaylist(playlist);
@@ -39,7 +41,7 @@ export const Sidebar = ({playListResponse}) => {
                     }}
                 >
                     <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white">
-                        <button className="btn btn-light w-100">
+                        <button onClick={() => setShowCreatePlayListModal(true)} className="btn btn-light w-100">
                             <i className="bi bi-plus"></i> Create a Playlist
                          </button>
                         <hr className="w-100 text-white" />
@@ -58,6 +60,7 @@ export const Sidebar = ({playListResponse}) => {
                 </div>
             </main>
             {selectedPlaylist && <PlayListModal playList={selectedPlaylist} onClose={() => setSelectedPlaylist(null)} />}
+            {showCreatePlayListModal && <CreatePlaylist onClose={() => setShowCreatePlayListModal(false)} reloadPlayLists={reloadPlayLists}/>}
         </div>
     );
 };

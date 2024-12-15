@@ -85,7 +85,7 @@ export const createPlaylist = async (playlistName, playlistDescription, isPublic
     };
 
     try {
-        const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+        const response = await fetch(`https://api.spotify.com/v1/me/playlists`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${getAccessToken()}`,
@@ -100,6 +100,7 @@ export const createPlaylist = async (playlistName, playlistDescription, isPublic
 
         const data = await response.json();
         console.log('Playlist created successfully:', data);
+        return true;
     } catch (error) {
         console.error('Error creating playlist:', error);
     }

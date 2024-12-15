@@ -14,6 +14,7 @@ import { getUserPlaylists } from "../Playlists/Playlists";
 const Root = ({ isLoggedin }) => {
     const [searchQuery, setSearchQuery] = useState();
     const [playListResponse, setPlayListResponse] = useState();
+    const [playListFetched, setPlayListFetched] = useState(false);
 
     const {
         currentTrack,
@@ -34,9 +35,13 @@ const Root = ({ isLoggedin }) => {
 
     }, [currentTrack]);
 
+    const reloadPlayLists = () => {
+        setPlayListFetched(!playListFetched);
+    }
+
     useEffect(() => {
         getUserPlaylists().then(response => setPlayListResponse(response));
-    }, []);
+    }, [playListFetched]);
 
     const startPlayingContent = (typeOfContent, contentId) => {
         playMusicInPlayer(typeOfContent, contentId);
@@ -55,7 +60,7 @@ const Root = ({ isLoggedin }) => {
             </header>
             <main>
                 <div className='sidebar'>
-                    <Sidebar playListResponse={playListResponse}/>
+                    <Sidebar playListResponse={playListResponse} reloadPlayLists={reloadPlayLists}/>
                 </div>
                 <div className='content'>
                     <Outlet context={context} />
