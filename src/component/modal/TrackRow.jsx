@@ -1,12 +1,9 @@
-import { useState } from "react"
+import { PlaylistMenu } from "./PlaylistMenu";
 
+export const TrackRow = ({track, isMenuOpen, setOpenMenuId, hideMenuModal}) => {
 
-export const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const handleMenuToggle = () => {
-        console.log("Menu is clicked");
-        setIsMenuOpen(!isMenuOpen);
+    const handleMenuToggle = (trackId) => {
+        setOpenMenuId(trackId);
     }
 
     const msToTime = (durationInMs)=> {
@@ -28,39 +25,27 @@ export const TrackRow = ({trackName, albumImageUrl, duration, artistName}) => {
                 <div className={"track-name"}>
                     <div className={"image-play-icon"}>
                         <i className={"bi bi-play-circle play-icon"}></i>
-                        <img className={"track-image"} src={albumImageUrl}></img>
-                       
+                        <img className={"track-image"} src={track.imageUrl}></img>
                     </div>
-                    
-                    <p className={"track-p"}>{shortenName(trackName)}</p>
+                    <p className={"track-p"}>{shortenName(track.name)}</p>
                 </div>
             </td>
             <td className={"artist"}>
-                <p className={"track-p"}>{artistName}</p>
+                <p className={"track-p"}>{track.artist}</p>
             </td>
             <td>
-                <p className={"track-p"}>{msToTime(duration)}</p>
+                <p className={"track-p"}>{msToTime(track.duration)}</p>
             </td>
-            <td>
+            {!hideMenuModal && <td>
                 <div className={"row-menu-container"}>
-                    <div onClick={handleMenuToggle}>
+                    <div onClick={() => handleMenuToggle(track.id)}>
                         <i className={"bi bi-three-dots-vertical clickable-row-menu"} />
                     </div>
-                    {isMenuOpen && <div className={"row-menu"}> 
-                        {/* TODO: Have to fetch playlist from API and display in the list*/}
-                        <ul>
-                            <li>Create playlist</li>
-                            <li>Playlist 1</li>
-                            <li>Playlist 2</li>
-                            <li>Playlist 3</li>
-                        </ul>
-                    </div>}
+                    {isMenuOpen && <PlaylistMenu trackId={track.id} handleMenuToggle={handleMenuToggle}/>}
                 </div>
-                
-            </td>
+            </td>}
             <td ></td>    
         </tr>
         </>
-     
     )
 }

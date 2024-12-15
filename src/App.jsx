@@ -61,7 +61,7 @@ function App() {
 
      
       <Route path='/' element={<Root isLoggedin={loggedIn} />}>
-        <Route path='/home' element={<Home />} />
+        <Route path='/home' element={<Home />} />   
         <Route path='/initPlayer' element={<InitPlayerTest />} />
         <Route path="/*" element={<ErrorPage />} />
       </Route>

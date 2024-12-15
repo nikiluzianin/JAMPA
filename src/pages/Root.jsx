@@ -8,10 +8,13 @@ import "../component/Home/homepagemain/HomePageMain.css"
 import { useEffect, useState } from "react";
 import '../component/Home/HomePage/Homepage.css'
 import usePlayer from "../Player/usePlayer";
+import { getUserPlaylists } from "../Playlists/Playlists";
 
 
 const Root = ({ isLoggedin }) => {
     const [searchQuery, setSearchQuery] = useState();
+    const [playListResponse, setPlayListResponse] = useState();
+    const [playListFetched, setPlayListFetched] = useState(false);
 
     const {
         currentTrack,
@@ -32,6 +35,14 @@ const Root = ({ isLoggedin }) => {
 
     }, [currentTrack]);
 
+    const reloadPlayLists = () => {
+        setPlayListFetched(!playListFetched);
+    }
+
+    useEffect(() => {
+        getUserPlaylists().then(response => setPlayListResponse(response));
+    }, [playListFetched]);
+
     const startPlayingContent = (typeOfContent, contentId) => {
         playMusicInPlayer(typeOfContent, contentId);
     }
@@ -39,6 +50,7 @@ const Root = ({ isLoggedin }) => {
     const context = {
         startPlayingContent: startPlayingContent,
         searchQuery: searchQuery,
+        playListResponse: playListResponse,
     };
 
     return (
@@ -48,7 +60,7 @@ const Root = ({ isLoggedin }) => {
             </header>
             <main>
                 <div className='sidebar'>
-                    {/*<Sidebar />*/}
+                    <Sidebar playListResponse={playListResponse} reloadPlayLists={reloadPlayLists}/>
                 </div>
                 <div className='content'>
                     <Outlet context={context} />

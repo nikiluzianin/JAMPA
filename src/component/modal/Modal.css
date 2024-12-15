@@ -110,5 +110,23 @@
     width: 200px;
 }
 
+.row-menu-header {
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+}
+.row-menu-header h5 {
+    text-align: center;
+}
 
+.row-menu ul {
+    list-style-type: none;
+}
 
+.row-menu ul li {
+    cursor: pointer;
+    padding: 0;
+}
+
+.row-menu ul li:hover {
+    background-color: #cecdcd;
+}

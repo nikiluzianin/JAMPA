@@ -43,13 +43,22 @@ export async function searchSpotify(query) {
 let playlistId;
 
 export const getPlaylistItems = async (playlistId) => {
-    const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-        headers: {
-            'Authorization': `Bearer ${getAccessToken()}`
+    try {
+        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+            headers: {
+                'Authorization': `Bearer ${getAccessToken()}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
         }
-    });
-    const data = await response.json();
-    return data;
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching playlist items:', error);
+    }
 }
 
 // gives you playlist cover photo
@@ -76,7 +85,7 @@ export const createPlaylist = async (playlistName, playlistDescription, isPublic
     };
 
     try {
-        const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+        const response = await fetch(`https://api.spotify.com/v1/me/playlists`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${getAccessToken()}`,
@@ -91,8 +100,26 @@ export const createPlaylist = async (playlistName, playlistDescription, isPublic
 
         const data = await response.json();
         console.log('Playlist created successfully:', data);
+        return true;
     } catch (error) {
         console.error('Error creating playlist:', error);
+    }
+}
+
+// get user playlists
+export const getUserPlaylists = async () => {  
+    try {
+        const response = await fetch(`https://api.spotify.com/v1/me/playlists`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${getAccessToken()}`,
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {   
+        console.error('Error fetching user playlists:', error);
     }
 }
 
@@ -128,7 +155,22 @@ export const getArtistTopTracks = async (artistId) => {  // get Artist top track
    }
 }
 
-
+export const addSongToPlaylist = async (playlistId, trackId) => {
+    try {
+        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=spotify:track:${trackId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${getAccessToken()}`
+            }
+        });
+        if(response.ok) {
+            return true;
+        }
+        throw new Error('Error in adding song to playlist' + response.statusText);
+    } catch (error) {
+        console.error('Error adding song to playlist:', error);
+    }
+}
 
 
 

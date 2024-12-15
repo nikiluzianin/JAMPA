@@ -1,7 +1,6 @@
 export const Card = ({id, name, imageHref, selectCard}) => {
    const onClickCard = () => {
     selectCard(id);
-    console.log(id);
    }
     return (
         <>

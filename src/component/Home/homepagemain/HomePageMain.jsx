@@ -6,13 +6,15 @@ import { searchSpotify } from "../../../Playlists/Playlists";
 import '../../cardpanel/CardPanel.css';
 import { AlbumModal } from '../../modal/AlbumModal';
 import { ArtistModal } from "../../modal/ArtistModal";
+import { useOutletContext } from "react-router-dom";
 
-export const HomePageMain = ({searchQuery}) => {
+export const HomePageMain = () => {
     const [showMoodModal, setShowMoodModal] = useState(false);
     const [selectedAlbumId, setSelectedAlbumId] = useState();
     const [selectedArtistId, setSelectedArtistId] = useState();
     const [mood, setMood] = useState();
     const [searchResult, setSearchResult] = useState();
+    const {searchQuery} = useOutletContext();
 
     useEffect(() => {
         searchSpotify(searchQuery && searchQuery.trim() !== "" ? searchQuery.trim() : "top songs")

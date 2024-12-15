@@ -1,4 +1,6 @@
-import { TrackRow } from "./TrackRow"
+import './Modal.css';
+import { TrackRow } from "./TrackRow";
+import { useState } from "react";
 
 const ModalComponent = ({ title, children, onClose }) => {
     return (
@@ -32,7 +34,8 @@ const ModalComponent = ({ title, children, onClose }) => {
     }
 ]
  */
-export const Modal = ({title, onClose, tracks}) => {
+export const Modal = ({title, onClose, tracks, hideMenuModal}) => {
+   const [openMenuId, setOpenMenuId] = useState(null);
     return (
         <ModalComponent title={title} onClose={onClose} >
             <>
@@ -48,10 +51,10 @@ export const Modal = ({title, onClose, tracks}) => {
                         {tracks.map(track => 
                             <TrackRow 
                                 key={track.id}
-                                trackName={track.name} 
-                                albumImageUrl={track.imageUrl} 
-                                duration={track.duration}
-                                artistName={track.artist}
+                                track={track}
+                                isMenuOpen={openMenuId === track.id}
+                                setOpenMenuId={setOpenMenuId}
+                                hideMenuModal={hideMenuModal}
                             />
                         )}
                         </tbody>
