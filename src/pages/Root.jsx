@@ -1,12 +1,9 @@
 import { Outlet } from "react-router-dom";
-import { Header } from "../component/Home/Header/Header"
-import { Footer } from "../component/Home/Footer/Footer";
-import { Sidebar } from "../component/Home/SideBar/Sidebar"
-import { Popup, updatePlayerInfo } from "../Popup/Popup"
-// import { preparePlayer, playMusicInPlayer } from '../Player/Player'
-import "../component/Home/homepagemain/HomePageMain.css"
+import { Header } from "../component/Home/Header/Header";
+import { Footer } from "../component/Home/Footer/Footer"
+import { Sidebar } from "../component/Home/SideBar/Sidebar";
+import { Popup, updatePlayerInfo } from "../Popup/Popup";
 import { useEffect, useState } from "react";
-import '../component/Home/HomePage/Homepage.css'
 import usePlayer from "../Player/usePlayer";
 import { getUserPlaylists } from "../Playlists/Playlists";
 
@@ -32,12 +29,11 @@ const Root = ({ isLoggedin }) => {
 
     useEffect(() => {
         updatePlayerInfo(currentTrack, playerVolumePercentage);
-
     }, [currentTrack]);
 
     const reloadPlayLists = () => {
         setPlayListFetched(!playListFetched);
-    }
+    };
 
     useEffect(() => {
         getUserPlaylists().then(response => setPlayListResponse(response));
@@ -45,7 +41,7 @@ const Root = ({ isLoggedin }) => {
 
     const startPlayingContent = (typeOfContent, contentId) => {
         playMusicInPlayer(typeOfContent, contentId);
-    }
+    };
 
     const context = {
         startPlayingContent: startPlayingContent,
@@ -54,24 +50,51 @@ const Root = ({ isLoggedin }) => {
     };
 
     return (
-        <div className='homepage'>
-            <header>
-                <Header searchInput={(query) => setSearchQuery(query)}/>
+        <div className="homepage">
+            {/* Header */}
+            <header className="position-sticky top-0  ">
+
+                <Header searchInput={(query) => setSearchQuery(query)} />
             </header>
-            <main>
-                <div className='sidebar'>
-                    <Sidebar playListResponse={playListResponse} reloadPlayLists={reloadPlayLists}/>
+
+            {/* Main Content Area */}
+            <main className="container-fluid bg-black  mb-5">
+                <div className="row p-5">
+                    {/* Sidebar (3 columns) */}
+                    <div className="sidebar col-12 col-md-3 mt-4 border rounded p-4">
+                        <Sidebar playListResponse={playListResponse} reloadPlayLists={reloadPlayLists} />
+                    </div>
+
+                    {/* Main Content (Remaining columns for Outlet) */}
+                    <div className="content col-12 col-md-9 ms-auto mt-5">
+                        <Outlet context={context} />
+                    </div>
                 </div>
-                <div className='content'>
-                    <Outlet context={context} />
-                </div>
+                <Popup
+                    togglePlayer={togglePlayer}
+                    nextTrackPlayer={nextTrackPlayer}
+                    previousTrackPlayer={previousTrackPlayer}
+                    setPlayerVolume={setPlayerVolume}
+                    isPaused={isPaused}
+                />
+
             </main>
 
-            <Popup togglePlayer={togglePlayer} nextTrackPlayer={nextTrackPlayer} previousTrackPlayer={previousTrackPlayer} setPlayerVolume={setPlayerVolume} isPaused={isPaused} />
+            {/* Player Popup */}
+            {/* <Popup 
+                togglePlayer={togglePlayer} 
+                nextTrackPlayer={nextTrackPlayer} 
+                previousTrackPlayer={previousTrackPlayer} 
+                setPlayerVolume={setPlayerVolume} 
+                isPaused={isPaused} 
+            /> */}
 
-            < Footer />
+            {/* Footer */}
+            <div className="">
+                <Footer></Footer>
+            </div>
         </div>
-    )
-}
+    );
+};
 
-export default Root
+export default Root;

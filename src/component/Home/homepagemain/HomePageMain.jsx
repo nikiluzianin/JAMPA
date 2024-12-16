@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { MoodModal } from "../../modal/MoodModal";
-import './HomePageMain.css';
 import { CardPanel } from "../../cardpanel/CardPanel";
 import { searchSpotify } from "../../../Playlists/Playlists";
 import '../../cardpanel/CardPanel.css';
@@ -10,20 +9,28 @@ import { useOutletContext } from "react-router-dom";
 
 export const HomePageMain = () => {
     const [showMoodModal, setShowMoodModal] = useState(false);
-    const [selectedAlbumId, setSelectedAlbumId] = useState();
-    const [selectedArtistId, setSelectedArtistId] = useState();
-    const [mood, setMood] = useState();
-    const [searchResult, setSearchResult] = useState();
-    const {searchQuery} = useOutletContext();
+    const [selectedAlbumId, setSelectedAlbumId] = useState(null);
+    const [selectedArtistId, setSelectedArtistId] = useState(null);
+    const [mood, setMood] = useState(null);
+    const [searchResult, setSearchResult] = useState(null);
+    const { searchQuery } = useOutletContext();
 
     useEffect(() => {
-        searchSpotify(searchQuery && searchQuery.trim() !== "" ? searchQuery.trim() : "top songs")
-            .then(response => setSearchResult(response));
+        const query = searchQuery && searchQuery.trim() !== ""
+            ? searchQuery.trim()
+            : "top songs";
+
+        searchSpotify(query)
+            .then(response => setSearchResult(response))
+            .catch(error => {
+                console.error("Error searching Spotify:", error);
+                setSearchResult(null);
+            });
     }, [searchQuery]);
 
-    const moodButtonClickHandler = (mood) => {
+    const moodButtonClickHandler = (selectedMood) => {
         setShowMoodModal(true);
-        setMood(mood);
+        setMood(selectedMood);
     };
 
     const albums = searchResult ? searchResult.albums.items.map(albumItem => ({
@@ -47,35 +54,73 @@ export const HomePageMain = () => {
     const moods = ["Happy", "Angry", "Sad", "Holiday", "Party", "Laugh", "Bored", "Natural"];
 
     return (
-        <>
-            <div className="main-container">
-                <div className="mood-button-container">
-                    {moods.map((moodItem, index) =>
-                        <button key={`mood-button-${index}`} className="mood-button" onClick={() => moodButtonClickHandler(moodItem)}>
+        <div className="homepage-main-container">
+            <div className="bg-dark p-4 ">
+                {/* Mood Buttons */}
+                <div className="mood-button-container  text-center mb-4">
+                    {moods.map((moodItem, index) => (
+                        <button
+                            key={`mood-button-${index}`}
+                            className="btn btn-outline-danger mx-2 mb-2"
+                            onClick={() => moodButtonClickHandler(moodItem)}
+                        >
                             {moodItem}
                         </button>
-                    )}
+                    ))}
                 </div>
-                <div className="card-sections">
-                    <div className="card-panel-section">
-                        <h3>Albums</h3>
-                        <CardPanel cards={albums} selectCard={(id) => setSelectedAlbumId(id)} />
+
+                {/* Main Content Sections */}
+                <div className="row">
+                    {/* Albums Section */}
+                    <div className="col-12 mb-4">
+                        <h3 className="text-white">Albums</h3>
+                        <CardPanel
+                            cards={albums}
+                            selectCard={(id) => setSelectedAlbumId(id)}
+                        />
                     </div>
-                    <div className="card-panel-section">
-                        <h3>Artists</h3>
-                        <CardPanel cards={artists} selectCard={(id) => setSelectedArtistId(id)} />
+
+                    {/* Artists Section */}
+                    <div className="col-12 mb-4">
+                        <h3 className="text-white">Artists</h3>
+                        <CardPanel
+                            cards={artists}
+                            selectCard={(id) => setSelectedArtistId(id)}
+                        />
                     </div>
-                    <div className="card-panel-section">
-                        <h3>Tracks</h3>
-                        <CardPanel cards={tracks} selectCard={() => { }} />
+
+                    {/* Tracks Section */}
+                    <div className="col-12 mb-4">
+                        <h3 className="text-white">Tracks</h3>
+                        <CardPanel
+                            cards={tracks}
+                            selectCard={() => { }}
+                        />
                     </div>
                 </div>
             </div>
+
+            {/* Modals */}
             <div>
-                {showMoodModal && <MoodModal mood={mood} onClose={() => setShowMoodModal(false)} />}
-                {selectedAlbumId && <AlbumModal albumId={selectedAlbumId} onClose={() => setSelectedAlbumId()} />}
-                {selectedArtistId && <ArtistModal artistId={selectedArtistId} onClose={() => setSelectedArtistId()} />}
+                {showMoodModal && (
+                    <MoodModal
+                        mood={mood}
+                        onClose={() => setShowMoodModal(false)}
+                    />
+                )}
+                {selectedAlbumId && (
+                    <AlbumModal
+                        albumId={selectedAlbumId}
+                        onClose={() => setSelectedAlbumId(null)}
+                    />
+                )}
+                {selectedArtistId && (
+                    <ArtistModal
+                        artistId={selectedArtistId}
+                        onClose={() => setSelectedArtistId(null)}
+                    />
+                )}
             </div>
-        </>
+        </div>
     );
 };
