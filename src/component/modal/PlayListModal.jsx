@@ -5,12 +5,15 @@ import { getPlaylistItems } from "../../Playlists/Playlists";
 
 export const PlayListModal = ({playList, onClose}) => {
     const [playListResponse, setPlayListResponse] = useState();
+    const [reFetchPlaylist, setReFetchPlaylist] = useState(false);
    
     useEffect(() => {
         getPlaylistItems(playList.id).then(response => {
             setPlayListResponse(response);
         })
-    }, [playList]);
+    }, [playList, reFetchPlaylist]);
+
+    
 
     const playListTracks = playListResponse ? playListResponse.items
     .filter(item => item.track.name)
@@ -24,6 +27,12 @@ export const PlayListModal = ({playList, onClose}) => {
     : [];
 
     return (
-        <Modal title={playList.name} onClose={onClose} tracks={playListTracks} hideMenuModal={true}/>
+        <Modal 
+            title={playList.name} 
+            onClose={onClose} 
+            tracks={playListTracks} 
+            playlistId={playList.id} 
+            reFetchPlaylist={() => setReFetchPlaylist(!reFetchPlaylist)}
+        />
     )
 }

@@ -10,7 +10,7 @@ import { getUserPlaylists } from "../Playlists/Playlists";
 
 const Root = ({ isLoggedin }) => {
     const [searchQuery, setSearchQuery] = useState();
-    const [playListResponse, setPlayListResponse] = useState();
+    const [userPlayListsResponse, setUserPlayListsResponse] = useState();
     const [playListFetched, setPlayListFetched] = useState(false);
 
     const {
@@ -36,7 +36,7 @@ const Root = ({ isLoggedin }) => {
     };
 
     useEffect(() => {
-        getUserPlaylists().then(response => setPlayListResponse(response));
+        getUserPlaylists().then(response => setUserPlayListsResponse(response));
     }, [playListFetched]);
 
     const startPlayingContent = (typeOfContent, contentId) => {
@@ -46,7 +46,7 @@ const Root = ({ isLoggedin }) => {
     const context = {
         startPlayingContent: startPlayingContent,
         searchQuery: searchQuery,
-        playListResponse: playListResponse,
+        userPlayListsResponse: userPlayListsResponse,
     };
 
     return (
@@ -62,7 +62,7 @@ const Root = ({ isLoggedin }) => {
                 <div className="row p-5">
                     {/* Sidebar (3 columns) */}
                     <div className="sidebar col-12 col-md-3 mt-4 border rounded p-4">
-                        <Sidebar playListResponse={playListResponse} reloadPlayLists={reloadPlayLists} />
+                        <Sidebar playListResponse={userPlayListsResponse} reloadPlayLists={reloadPlayLists} />
                     </div>
 
                     {/* Main Content (Remaining columns for Outlet) */}
