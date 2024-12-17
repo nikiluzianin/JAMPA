@@ -2,8 +2,8 @@ import { useOutletContext } from "react-router-dom";
 import { addSongToPlaylist } from "../../Playlists/Playlists";
 
 export const PlaylistMenu = ({trackId, handleMenuToggle}) => {
-    const {playListResponse} = useOutletContext();
-    const playlists = playListResponse ? playListResponse.items.map(item => ({
+    const {userPlayListsResponse} = useOutletContext();
+    const playlists = userPlayListsResponse ? userPlayListsResponse.items.map(item => ({
         id: item.id,
         name: item.name,
     })) : [];

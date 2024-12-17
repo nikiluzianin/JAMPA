@@ -173,11 +173,23 @@ export const addSongToPlaylist = async (playlistId, trackId) => {
 }
 
 
-
-
-
-
-
-
-
-
+export const removePlaylistItems = async (playlistId, trackId) => {
+    try {
+        const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${getAccessToken()}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                tracks: [{ uri: `spotify:track:${trackId}` }]
+            })
+        });
+        if(response.ok) {
+            return true;
+        }
+        throw new Error('Error in removing song from playlist' + response.statusText);
+    } catch (error) {
+        console.error('Error removing song from playlist:', error);
+    }
+}

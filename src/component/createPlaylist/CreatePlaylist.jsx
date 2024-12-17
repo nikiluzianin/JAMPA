@@ -65,12 +65,12 @@ export const CreatePlaylist = ({onClose, reloadPlayLists}) => {
                 <label htmlFor="input2" className="form-label">
                   Description
                 </label>
-                <input
+                <textarea
                   type="textarea"
                   className="form-control"
                   id="description"
                   name="description"
-                  required
+                  placeholder="Add an optional decsription"
                 />
               </div>
             </form>
