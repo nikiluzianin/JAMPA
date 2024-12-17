@@ -1,7 +1,12 @@
-.sidebar {
-  
-  padding: 10px;
-  color: white;
-  transition: width 0.3s ease; 
-  
+.selected-playlist {
+  background-color: #282828 !important;
+  color: #1ed760 !important;
+}
+.playlist {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
+    color: white;
+    cursor: pointer;
 }
