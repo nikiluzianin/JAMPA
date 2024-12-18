@@ -3,10 +3,15 @@
   color: #1ed760 !important;
 }
 .playlist {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 7fr 1fr;
     text-decoration: none;
     padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
     color: white;
     cursor: pointer;
+    align-items: center;
+}
+
+.playlist:hover {
+    background-color: #383f46;
 }

@@ -25,8 +25,8 @@ const PlayListItem = ({ playlist, isSelected, selectPlaylist }) => {
             </div>
             <div onClick={handlePlay}>
                 {isPlaying 
-                    ? (<i className="bi bi-pause-circle" ></i>) 
-                    : (<i className="bi bi-play-circle" ></i>)}
+                    ? (<i className="bi bi-pause-circle" style={{ fontSize: '1.5em'}}></i>) 
+                    : (<i className="bi bi-play-circle" style={{ fontSize: '1.5em'}}></i>)}
             </div>
         </li>
     )
@@ -59,7 +59,7 @@ export const Sidebar = ({
                                 <i className="bi bi-plus"></i> Create a Playlist
                             </button>
                         </div>
-                        <div class="border-bottom my-4"></div>
+                        <div className="border-bottom my-4"></div>
                         <h5 className="text-white">Playlists</h5>
 
                         <ul className="list-group">
