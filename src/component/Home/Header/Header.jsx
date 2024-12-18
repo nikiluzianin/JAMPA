@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import logo from '../../../assets/logo.svg';
 import './Header.css';
 
@@ -11,10 +10,6 @@ export const Header = ({searchInput}) => {
         searchInput(searchValue);
     };
 
-   const [isVisible, setIsVisible] = useState(false);
-
-    const showListBtn = () => {setIsVisible(!isVisible);
-                            console.log('visible:', isVisible);}; 
 
     return (
         <div>
@@ -39,11 +34,6 @@ export const Header = ({searchInput}) => {
                         style={{ boxShadow: 'none' }}      
                     />
                 </form>
-
-                {/* <button onClick={showListBtn} className='menuMobile' aria-label='menu'>MENU</button> */}
-
-                {isVisible && (<ul className={`list ${isVisible ? "show": ""}`}> <li> Create Playlist</li> </ul>) } 
-
             </nav>
         </div>
     );
