@@ -1,45 +1,39 @@
-# JAMPA
+# <h1 align='center'>JAMPA</h1>
 
-A playlist generator using spotify clone
-Basically having fun at party without thinking much about music
+A playlist generator using the Spotify API, designed to match human moods and enhance music experiences. Perfect for enjoying a party without worrying about choosing the right songs.
+This is geared towards everyone and to all all age groups.
 
-## Technologies used
+![JAMPA Music App](./public/website.png)
 
-Built with:
-
+## Built with:
 - HTML
 - JS
 - CSS
-- Node JS
 - Reactjs
-- MariaDB
+- Bootstrap
 
-## Requirements
 
-See the project instruction [here](https://unelmacloud.com/drive/s/pkvQo8OdksJ91PJWOqAWrzgDrjOsMM)
 
-## Notes
+## Getting Started /Usage
+- First install npm to get node_modules if you do not have.  
+```
+npm install
+```
 
-if you need to get an access token, use the function getAccessToken() from AuthTokenApi.js
-
-To start playback on your computer, first run the Player.js. Player is started when using script from Player.js. 
-In order to start playing music on your computer, call API transferPlaybackTo(token, deviceId) with token (get it via getAccessToken() from AuthTokenApi.js) and device id (get it via getDeviceId() from Player.js)
-
-<!-- ## Setup and usage
-
-Live page [here](https://github.com/margittennosaar/markdown_study_materials)
-
-## Screenshot
+- Start the project. Take the link given in the terminal into the browser.
+```b
+npm run dev
+```
 
 ## Sources
-
-- [GitHub Guides - masterin markdown](https://guides.github.com/features/mastering-markdown/)
-- [Make a README](https://www.makeareadme.com/) -->
+Spotify API
 
 ## Authors and acknowledgment
 
 1. [Nikita Luzianin](https://github.com/nikiluzianin)
-1. [Ruth Asafu-Adjaye](https://github.com/RuthieRuth)
-1. [Puja Kumari](https://github.com/Pujakumari1511)
-1. [Saimun Islam](https://github.com/plabon013)
-1. [Sayeed Anwar](https://github.com/iamharryda)
+2. [Ruth Asafu-Adjaye](https://github.com/RuthieRuth)
+3. [Puja Kumari](https://github.com/Pujakumari1511)
+4. [Sayeed Anwar](https://github.com/iamharryda)
+5. [Saimun Islam](https://github.com/plabon013)
+
+And to all our mates who helped us through the building of this project.
