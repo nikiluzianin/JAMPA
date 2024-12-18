@@ -11,7 +11,7 @@ export const Header = ({ searchInput }) => {
 
     return (
         <div className="w-100 mx-auto">
-            <nav className="navbar navbar-dark bg-dark position-sticky top-0 zindex-100">
+            <nav className="navbar navbar-dark bg-dark position-sticky top-0 zindex-1000">
                 <div className="container-fluid">
                     {/* Logo Section */}
                     <a href="/" className="text-white text-decoration-none">

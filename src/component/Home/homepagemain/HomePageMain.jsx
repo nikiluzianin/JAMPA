@@ -54,8 +54,8 @@ export const HomePageMain = () => {
     const moods = ["Happy", "Angry", "Sad", "Holiday", "Party", "Laugh", "Bored", "Natural"];
 
     return (
-        <div className="homepage-main-container">
-            <div className="bg-dark p-4 ">
+        <div className="homepage-main-container ">
+            <div className="bg-dark p-4 rounded">
                 {/* Mood Buttons */}
                 <div className="mood-button-container  text-center mb-4">
                     {moods.map((moodItem, index) => (

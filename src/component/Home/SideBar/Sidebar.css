@@ -5,7 +5,6 @@
 .playlist {
     display: block;
     text-decoration: none;
-    position: relative;
     padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
     color: white;
     cursor: pointer;

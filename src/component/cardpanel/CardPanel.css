@@ -1,9 +1,10 @@
 .card-panel {
     color: white; 
     padding: 20px;
-    background-color: #1e1e1e; /* Matches the dark background */
+    background-color: #212529; /* Matches the dark background */
     border-radius: 10px;
     margin-bottom: 30px; /* Separate each card section */
+    cursor: pointer;
 }
 
 /* Scrollable Cards */
@@ -55,7 +56,6 @@
 }
 
 .detail-card:hover {
-    transform: translateY(-5px); /* Adds lift effect */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8), 0 3px 6px rgba(255, 255, 255, 0.15);
     background: linear-gradient(145deg, #2e2e2e, #3a3a3a); /* Slightly brighter gradient on hover */
 }

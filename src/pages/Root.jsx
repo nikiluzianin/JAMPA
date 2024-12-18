@@ -58,15 +58,15 @@ const Root = ({ isLoggedin }) => {
             </header>
 
             {/* Main Content Area */}
-            <main className="container-fluid bg-black  mb-5">
+            <main className="container-fluid bg-black  pb-5">
                 <div className="row p-5">
                     {/* Sidebar (3 columns) */}
-                    <div className="sidebar col-12 col-md-3 mt-4 border rounded p-4">
+                    <div className="sidebar col-12 col-md-3 mt-4 bg-dark rounded p-4">
                         <Sidebar playListResponse={userPlayListsResponse} reloadPlayLists={reloadPlayLists} />
                     </div>
 
                     {/* Main Content (Remaining columns for Outlet) */}
-                    <div className="content col-12 col-md-9 ms-auto mt-5">
+                    <div className="content col-12 col-md-9 ms-auto mt-4">
                         <Outlet context={context} />
                     </div>
                 </div>
@@ -79,17 +79,6 @@ const Root = ({ isLoggedin }) => {
                 />
 
             </main>
-
-            {/* Player Popup */}
-            {/* <Popup 
-                togglePlayer={togglePlayer} 
-                nextTrackPlayer={nextTrackPlayer} 
-                previousTrackPlayer={previousTrackPlayer} 
-                setPlayerVolume={setPlayerVolume} 
-                isPaused={isPaused} 
-            /> */}
-
-            {/* Footer */}
             <div className="">
                 <Footer></Footer>
             </div>

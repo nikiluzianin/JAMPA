@@ -33,14 +33,15 @@ export const Sidebar = ({
             <main className="">
                 <div className="">
                     {/* Sidebar */}
-                    <div className=" bg-black mb-4">
+                    <div className=" bg-dark mb-4">
                         <div className="create-playlist-container p-4">
-                            <button onClick={() => setShowCreatePlayListModal(true)}>
+                            <button className="rounded" onClick={() => setShowCreatePlayListModal(true)}>
                                 <i className="bi bi-plus"></i> Create a Playlist
                             </button>
                         </div>
-                        <hr className="text-white" />
+                        <div class="border-bottom my-4"></div>
                         <h5 className="text-white">Playlists</h5>
+
                         <ul className="list-group">
                             {playlists.map((playlist) => (
                                 <PlayListItem
