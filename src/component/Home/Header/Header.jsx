@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import logo from '../../../assets/logo.svg';
+import './Header.css';
 
 export const Header = ({searchInput}) => {
     
@@ -8,9 +10,16 @@ export const Header = ({searchInput}) => {
         const searchValue = formData.get('search');
         searchInput(searchValue);
     };
+
+   const [isVisible, setIsVisible] = useState(false);
+
+    const showListBtn = () => {setIsVisible(!isVisible);
+                            console.log('visible:', isVisible);}; 
+
     return (
         <div>
-            <nav className="navbar navbar-dark bg-dark" style={{ height: '10vh' }}>
+            <nav className="navbar navbar-dark bg-dark" style={{ height:'12vh', margin:'30'}}>
+
                 <div className="d-flex align-items-center">
                     <a href="/" className="text-white text-decoration-none" >
                     <img src={logo} alt="Logo" style={{ height:'100px', marginRight: '80px', marginTop: '-20px',
@@ -18,6 +27,7 @@ export const Header = ({searchInput}) => {
                      }} />
                     </a>
                 </div>
+
                 <form onSubmit={handleSubmit} className="form-inline mx-auto w-50 d-flex align-items-center">
                     <i className="bi bi-search text-white me-2"></i>
                     <input
@@ -29,6 +39,11 @@ export const Header = ({searchInput}) => {
                         style={{ boxShadow: 'none' }}      
                     />
                 </form>
+
+                {/* <button onClick={showListBtn} className='menuMobile' aria-label='menu'>MENU</button> */}
+
+                {isVisible && (<ul className={`list ${isVisible ? "show": ""}`}> <li> Create Playlist</li> </ul>) } 
+
             </nav>
         </div>
     );

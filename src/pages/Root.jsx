@@ -48,7 +48,7 @@ const Root = ({ isLoggedin }) => {
             </header>
             <main>
                 <div className='sidebar'>
-                    {/*<Sidebar />*/}
+                    {<Sidebar />}
                 </div>
                 <div className='content'>
                     <Outlet context={context} />

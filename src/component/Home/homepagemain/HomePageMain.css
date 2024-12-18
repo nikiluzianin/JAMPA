@@ -16,8 +16,10 @@
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
+    margin-top: 25px;
     padding: 10px;
-    background-color: #1e1e1e;
+    background-color: #1e1e1e; 
+
 }
 
 .mood-button {
@@ -31,6 +33,7 @@
     border: none;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 40px;
 }
 
 .mood-button:hover {
