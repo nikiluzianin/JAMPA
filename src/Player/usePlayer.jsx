@@ -1,7 +1,7 @@
 'use strict'
 
 import { getAccessToken } from '../AuthTokenApi/AuthTokenApi.js'
-import { transferPlaybackTo, playMusic } from '../ApiFunctions/ApiFunctions.js'
+import { transferPlaybackTo, playMusic, playTrack } from '../ApiFunctions/ApiFunctions.js'
 import { useState } from 'react';
 
 const usePlayer = () => {
@@ -114,7 +114,11 @@ const usePlayer = () => {
     }
 
     async function playMusicInPlayer(typeOfContent, contentId) {
-        playMusic(getAccessToken(), typeOfContent, contentId);
+        if (typeOfContent === "track") {
+            playTrack(getAccessToken(), contentId);
+        } else {
+            playMusic(getAccessToken(), typeOfContent, contentId);
+        }
         setIsPaused(false);
     }
 

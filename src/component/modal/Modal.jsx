@@ -36,6 +36,7 @@ const ModalComponent = ({ title, children, onClose }) => {
  */
 export const Modal = ({title, onClose, tracks, playlistId, reFetchPlaylist}) => {
    const [openMenuId, setOpenMenuId] = useState(null);
+ 
     return (
         <ModalComponent title={title} onClose={onClose} >
             <>

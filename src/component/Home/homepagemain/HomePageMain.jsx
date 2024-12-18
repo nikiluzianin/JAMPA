@@ -5,7 +5,7 @@ import { searchSpotify } from "../../../Playlists/Playlists";
 import '../../cardpanel/CardPanel.css';
 import { AlbumModal } from '../../modal/AlbumModal';
 import { ArtistModal } from "../../modal/ArtistModal";
-import { useOutletContext } from "react-router-dom";
+import { useJampaContext } from "../../../pages/Root";
 
 export const HomePageMain = () => {
     const [showMoodModal, setShowMoodModal] = useState(false);
@@ -13,7 +13,7 @@ export const HomePageMain = () => {
     const [selectedArtistId, setSelectedArtistId] = useState(null);
     const [mood, setMood] = useState(null);
     const [searchResult, setSearchResult] = useState(null);
-    const { searchQuery } = useOutletContext();
+    const { searchQuery } = useJampaContext();
 
     useEffect(() => {
         const query = searchQuery && searchQuery.trim() !== ""
@@ -37,18 +37,21 @@ export const HomePageMain = () => {
         id: albumItem.id,
         imageHref: albumItem.images[0]?.url,
         name: albumItem.name,
+        contentType: "album",
     })) : [];
 
     const artists = searchResult ? searchResult.artists.items.map(artistItem => ({
         id: artistItem.id,
         imageHref: artistItem.images[0]?.url,
         name: artistItem.name,
+        contentType: "artist",
     })) : [];
 
     const tracks = searchResult ? searchResult.tracks.items.map(trackItem => ({
         id: trackItem.id,
         imageHref: trackItem.album.images[0]?.url,
         name: trackItem.name,
+        contentType: "track",
     })) : [];
 
     const moods = ["Happy", "Angry", "Sad", "Holiday", "Party", "Laugh", "Bored", "Natural"];

@@ -1,7 +1,19 @@
 import { PlaylistMenu } from "./PlaylistMenu";
 import { removePlaylistItems } from "../../Playlists/Playlists";
+import { useJampaContext } from "../../pages/Root";
 
 export const TrackRow = ({track, isMenuOpen, setOpenMenuId, playlistId, reFetchPlaylist}) => {
+    const { startPlayingContent, togglePlayer, playingContentId, isPaused } = useJampaContext();
+    const isPlaying = playingContentId === track.id && !isPaused;
+
+    const handlePlay = () => {
+        if(playingContentId === track.id){
+            togglePlayer();
+            return;
+        }
+        startPlayingContent("track", track.id);
+    }
+
 
     const handleMenuToggle = (trackId) => {
         setOpenMenuId(trackId);
@@ -34,7 +46,11 @@ export const TrackRow = ({track, isMenuOpen, setOpenMenuId, playlistId, reFetchP
             <td className={"track"}>
                 <div className={"track-name"}>
                     <div className={"image-play-icon"}>
-                        <i className={"bi bi-play-circle play-icon"}></i>
+                        <div onClick={handlePlay} >
+                            {isPlaying 
+                            ? (<i className={"bi bi-pause-circle play-icon"}></i>) 
+                            : (<i className={"bi bi-play-circle play-icon"} ></i>)}
+                        </div>
                         <img className={"track-image"} src={track.imageUrl}></img>
                     </div>
                     <p className={"track-p"}>{shortenName(track.name)}</p>
@@ -49,7 +65,7 @@ export const TrackRow = ({track, isMenuOpen, setOpenMenuId, playlistId, reFetchP
             {playlistId 
             ? ( <td>
                 <div onClick={handleRemove}>
-                    <i class="bi bi-dash-circle"></i>
+                    <i className={"bi bi-dash-circle"}></i>
                 </div>
             </td>) 
             : (<td>

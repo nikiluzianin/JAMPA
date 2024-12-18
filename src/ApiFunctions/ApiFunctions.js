@@ -23,9 +23,8 @@ export async function getTrack(token, trackId) {
 
 export async function playMusic(token, typeOfContext, contextId) {
 
-    let result;
     if (!typeOfContext) {
-        result = await fetch("https://api.spotify.com/v1/me/player/play", {
+        await fetch("https://api.spotify.com/v1/me/player/play", {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -33,7 +32,7 @@ export async function playMusic(token, typeOfContext, contextId) {
             }
         });
     } else {
-        result = await fetch("https://api.spotify.com/v1/me/player/play", {
+        await fetch("https://api.spotify.com/v1/me/player/play", {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -45,8 +44,27 @@ export async function playMusic(token, typeOfContext, contextId) {
 
         });
     }
-    return await result.json();
 }
+
+export async function playTrack(token, trackId) {
+    await fetch("https://api.spotify.com/v1/me/player/play", {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'uris': [`spotify:track:${trackId}`],
+            })
+
+        });
+}
+
+
+
+
+
+
 // gets plays a song that was played before or plays selected content
 
 export async function startPlayback(token) {

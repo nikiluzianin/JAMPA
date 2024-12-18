@@ -3,7 +3,8 @@
   color: #1ed760 !important;
 }
 .playlist {
-    display: block;
+    display: flex;
+    justify-content: space-between;
     text-decoration: none;
     padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
     color: white;

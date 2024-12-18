@@ -21,6 +21,7 @@ export const CardPanel = ({ header, cards, selectCard }) => {
                     name={card.name} 
                     imageHref={card.imageHref} 
                     selectCard={selectCard}
+                    contentType={card.contentType}
                 />)}
             </div>
 

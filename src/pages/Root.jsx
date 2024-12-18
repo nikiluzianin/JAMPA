@@ -6,12 +6,17 @@ import { Popup, updatePlayerInfo } from "../Popup/Popup";
 import { useEffect, useState } from "react";
 import usePlayer from "../Player/usePlayer";
 import { getUserPlaylists } from "../Playlists/Playlists";
+import { createContext, useContext } from "react";
 
+
+const JampaContext = createContext();
+export const useJampaContext = () => useContext(JampaContext);
 
 const Root = ({ isLoggedin }) => {
     const [searchQuery, setSearchQuery] = useState();
     const [userPlayListsResponse, setUserPlayListsResponse] = useState();
     const [playListFetched, setPlayListFetched] = useState(false);
+    const [playingContentId, setPlayingContentId] = useState();
 
     const {
         currentTrack,
@@ -40,6 +45,7 @@ const Root = ({ isLoggedin }) => {
     }, [playListFetched]);
 
     const startPlayingContent = (typeOfContent, contentId) => {
+        setPlayingContentId(contentId);
         playMusicInPlayer(typeOfContent, contentId);
     };
 
@@ -47,42 +53,47 @@ const Root = ({ isLoggedin }) => {
         startPlayingContent: startPlayingContent,
         searchQuery: searchQuery,
         userPlayListsResponse: userPlayListsResponse,
+        playingContentId: playingContentId,
+        togglePlayer: togglePlayer,
+        isPaused: isPaused,
     };
 
     return (
-        <div className="homepage">
-            {/* Header */}
-            <header className="position-sticky top-0  ">
+        <JampaContext.Provider value={context}>
+            <div className="homepage">
+                {/* Header */}
+                <header className="position-sticky top-0  ">
 
-                <Header searchInput={(query) => setSearchQuery(query)} />
-            </header>
+                    <Header searchInput={(query) => setSearchQuery(query)} />
+                </header>
 
-            {/* Main Content Area */}
-            <main className="container-fluid bg-black  pb-5">
-                <div className="row p-5">
-                    {/* Sidebar (3 columns) */}
-                    <div className="sidebar col-12 col-md-3 mt-4 bg-dark rounded p-4">
-                        <Sidebar playListResponse={userPlayListsResponse} reloadPlayLists={reloadPlayLists} />
+                {/* Main Content Area */}
+                <main className="container-fluid bg-black  pb-5">
+                    <div className="row p-5">
+                        {/* Sidebar (3 columns) */}
+                        <div className="sidebar col-12 col-md-3 mt-4 bg-dark rounded p-4">
+                            <Sidebar playListResponse={userPlayListsResponse} reloadPlayLists={reloadPlayLists} />
+                        </div>
+
+                        {/* Main Content (Remaining columns for Outlet) */}
+                        <div className="content col-12 col-md-9 ms-auto mt-4">
+                            <Outlet />
+                        </div>
                     </div>
+                    <Popup
+                        togglePlayer={togglePlayer}
+                        nextTrackPlayer={nextTrackPlayer}
+                        previousTrackPlayer={previousTrackPlayer}
+                        setPlayerVolume={setPlayerVolume}
+                        isPaused={isPaused}
+                    />
 
-                    {/* Main Content (Remaining columns for Outlet) */}
-                    <div className="content col-12 col-md-9 ms-auto mt-4">
-                        <Outlet context={context} />
-                    </div>
+                </main>
+                <div className="">
+                    <Footer></Footer>
                 </div>
-                <Popup
-                    togglePlayer={togglePlayer}
-                    nextTrackPlayer={nextTrackPlayer}
-                    previousTrackPlayer={previousTrackPlayer}
-                    setPlayerVolume={setPlayerVolume}
-                    isPaused={isPaused}
-                />
-
-            </main>
-            <div className="">
-                <Footer></Footer>
             </div>
-        </div>
+        </JampaContext.Provider>
     );
 };
 
