@@ -58,7 +58,7 @@ const Root = ({ isLoggedin }) => {
             </header>
 
             {/* Main Content Area */}
-            <main className="container-fluid bg-black  mb-5">
+            <main className="bg-black  mb-5">
                 <div className="row p-5">
                     {/* Sidebar (3 columns) */}
                     <div className="sidebar col-12 col-md-3 mt-4 border rounded p-4">

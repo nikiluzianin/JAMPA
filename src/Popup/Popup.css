@@ -1,12 +1,16 @@
 /* General Container Styling */
+.popup{
+  position: absolute;
+}
+
 .popup-container {
-  height: 10%;
+  height: 100%;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #000;
-  color: #fff;
-  padding: 0 1rem;
+  position: relative;
 }
 
 /* Playback Controls */
@@ -14,6 +18,7 @@
   text-align: center;
   margin: auto;
 }
+
 
 .playback-buttons img {
   width: 1rem;
@@ -35,7 +40,6 @@
 /* Song Info */
 .song-info {
   align-items: center;
-  gap: 1rem;
 }
 
 .song-info img {
