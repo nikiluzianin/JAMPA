@@ -2,15 +2,35 @@ import './Sidebar.css';
 import { PlayListModal } from '../../modal/PlayListModal';
 import { useState } from "react";
 import { CreatePlaylist } from '../../createPlaylist/CreatePlaylist';
+import { useJampaContext } from '../../../pages/Root';
 
-const PlayListItem = ({ playlist, isSelected, selectPlaylist }) => (
-    <li
-        onClick={() => selectPlaylist(playlist)}
-        className={`playlist ${isSelected ? "selected-playlist" : ""}`}
-    >
-        <i className="bi bi-music-note-list"></i> {playlist.name}
-    </li>
-);
+const PlayListItem = ({ playlist, isSelected, selectPlaylist }) => {
+    const { startPlayingContent, togglePlayer, playingContentId, isPaused } = useJampaContext();
+    const isPlaying = playingContentId === playlist.id && !isPaused;
+
+    const handlePlay = () => {
+        if(playingContentId === playlist.id){
+            togglePlayer();
+            return;
+        }
+        startPlayingContent("playlist", playlist.id);
+    }
+    
+    return (
+        <li
+            className={`playlist ${isSelected ? "selected-playlist" : ""}`}
+        >
+            <div onClick={() => selectPlaylist(playlist)}>
+                <i className="bi bi-music-note-list"></i> {playlist.name}
+            </div>
+            <div onClick={handlePlay}>
+                {isPlaying 
+                    ? (<i className="bi bi-pause-circle" style={{ fontSize: '1.5em'}}></i>) 
+                    : (<i className="bi bi-play-circle" style={{ fontSize: '1.5em'}}></i>)}
+            </div>
+        </li>
+    )
+};
 
 export const Sidebar = ({
     playListResponse,
@@ -39,7 +59,7 @@ export const Sidebar = ({
                                 <i className="bi bi-plus"></i> Create a Playlist
                             </button>
                         </div>
-                        <div class="border-bottom my-4"></div>
+                        <div className="border-bottom my-4"></div>
                         <h5 className="text-white">Playlists</h5>
 
                         <ul className="list-group">

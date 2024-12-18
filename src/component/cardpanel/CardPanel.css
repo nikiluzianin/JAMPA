@@ -45,6 +45,13 @@
     justify-content: center;
     padding: 10px;
     transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.play-button{
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 .detail-card img {

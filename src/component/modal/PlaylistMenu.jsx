@@ -1,8 +1,8 @@
-import { useOutletContext } from "react-router-dom";
 import { addSongToPlaylist } from "../../Playlists/Playlists";
+import { useJampaContext } from "../../pages/Root";
 
 export const PlaylistMenu = ({trackId, handleMenuToggle}) => {
-    const {userPlayListsResponse} = useOutletContext();
+    const {userPlayListsResponse} = useJampaContext();
     const playlists = userPlayListsResponse ? userPlayListsResponse.items.map(item => ({
         id: item.id,
         name: item.name,

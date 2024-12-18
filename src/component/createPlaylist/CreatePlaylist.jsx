@@ -45,7 +45,7 @@ const ModalComponent = ({ children, onClose, handleSave }) => {
               type="button"
               className="btn btn-primary"
             >
-              Save Changes
+              Create
             </button>
           </div>
         </div>
