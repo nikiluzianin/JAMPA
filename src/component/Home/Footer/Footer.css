@@ -1,0 +1,26 @@
+footer {
+    background-color: #212529; /* Dark background for contrast */
+    color: #ecf0f1; /* Light text for readability */
+    text-align: center; /* Center-align the text */
+    padding: 1rem 0; /* Add padding for spacing */
+    font-size: 1rem; /* Set a readable font size */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for a modern look */
+  }
+  
+  footer p {
+    margin: 0; /* Remove default margins */
+  }
+  
+  footer p strong {
+    color: #ecf0f1; /* Highlight the developer name with a primary color */
+  }
+  
+  footer a {
+    color: #1abc9c; /* Color for links if added */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  footer a:hover {
+    text-decoration: underline; /* Underline on hover for clarity */
+  }
+  
