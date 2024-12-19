@@ -9,7 +9,7 @@ export const MoodModal = ({mood, onClose}) => {
     
       
     useEffect(() => {
-        searchSpotify(mood).then(response => {
+        searchSpotify(mood.title).then(response => {
             setSerachResult(response);
         })
     }, [mood]);
@@ -25,7 +25,7 @@ export const MoodModal = ({mood, onClose}) => {
     
     return (
         <>
-            <Modal title={mood} onClose={onClose} tracks={tracks} />
+            <Modal title={mood.title} onClose={onClose} tracks={tracks} imageSrc={mood.img}/>
         </>
         
     )

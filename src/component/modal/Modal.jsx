@@ -34,13 +34,15 @@ const ModalComponent = ({ title, children, onClose }) => {
     }
 ]
  */
-export const Modal = ({title, onClose, tracks, playlistId, reFetchPlaylist}) => {
+export const Modal = ({title, onClose, tracks, playlistId, reFetchPlaylist, imageSrc}) => {
    const [openMenuId, setOpenMenuId] = useState(null);
  
     return (
         <ModalComponent title={title} onClose={onClose} >
             <>
-                <div id={"songList"} className={'header-image'}></div>
+                <div id={"songList"} className={'header-image'}>
+                    <img src={imageSrc} alt={`${title}`}/>
+                </div>
                 <div className={"modal-dialog modal-dialog-scrollable"}>
                     <table className={"track-table"}>
                         <tbody>

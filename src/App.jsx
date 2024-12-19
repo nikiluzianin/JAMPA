@@ -2,15 +2,13 @@
 
 import './App.css'
 import { useState, useEffect } from 'react'
-import { RouterProvider, Routes, useNavigate, Route } from 'react-router-dom'
-import { getAccessToken, login, checkAccessToken } from './AuthTokenApi/AuthTokenApi.js'
+import { Routes, useNavigate, Route } from 'react-router-dom'
+import { login } from './AuthTokenApi/AuthTokenApi.js'
 import InitPlayerTest from './InitPlayerTest.jsx'
-//import LoginScreen from './LoginScreen/LoginScreen2.jsx'
 import Splashpage from './Splashpage/Splashpage/Splashpage.jsx'
-import TestModal from './TestModal.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import Root from './pages/Root.jsx'
-import Home from './pages/Home.jsx'
+import { HomePageMain } from './component/Home/homepagemain/HomePageMain.jsx'
 
 
 
@@ -60,7 +58,7 @@ function App() {
 
 
       <Route path='/' element={<Root isLoggedin={loggedIn} />}>
-        <Route path='/home' element={<Home />} />
+        <Route path='/home' element={<HomePageMain />} />
         <Route path='/initPlayer' element={<InitPlayerTest />} />
         <Route path="/*" element={<ErrorPage />} />
       </Route>

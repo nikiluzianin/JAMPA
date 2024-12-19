@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getAlbum } from '../../Playlists/Playlists';
 import { Modal } from './Modal';
+import defaultImage from '../../images/default.jpg';
 
 export const AlbumModal = ({albumId, onClose}) => {
     const [albumResponse, setAlbumResponse] = useState();
@@ -21,8 +22,9 @@ export const AlbumModal = ({albumId, onClose}) => {
     : [];
 
     const albumName = albumResponse ? albumResponse.name : "";
+    const albumImage = albumResponse?.images[0]?.url || defaultImage;
     return (
-        <Modal title={albumName} onClose={onClose} tracks={albumTracks} />      
+        <Modal title={albumName} onClose={onClose} tracks={albumTracks} imageSrc={albumImage}/>      
     )
 
 }

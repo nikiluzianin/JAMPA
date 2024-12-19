@@ -6,6 +6,13 @@ import '../../cardpanel/CardPanel.css';
 import { AlbumModal } from '../../modal/AlbumModal';
 import { ArtistModal } from "../../modal/ArtistModal";
 import { useJampaContext } from "../../../pages/Root";
+import happyImage from '../../../images/happy.jpg';
+import angryImage from '../../../images/angry.jpg';
+import holidayImage from '../../../images/holiday.jpg';
+import laughImage from '../../../images/laugh.jpg';
+import partyImage from '../../../images/party.jpg';
+import sadImage from '../../../images/sad.jpg';
+import naturalImage from '../../../images/natural.jpg';
 
 export const HomePageMain = () => {
     const [showMoodModal, setShowMoodModal] = useState(false);
@@ -54,7 +61,13 @@ export const HomePageMain = () => {
         contentType: "track",
     })) : [];
 
-    const moods = ["Happy", "Angry", "Sad", "Holiday", "Party", "Laugh", "Bored", "Natural"];
+    const moods = [{title: "Happy", img: happyImage},
+        {title: "Angry", img: angryImage},
+        {title: "Sad", img: sadImage},
+        {title: "Holiday", img: holidayImage},
+        {title: "Party", img: partyImage},
+        {title: "Laugh", img: laughImage},
+        {title: "Natural", img: naturalImage}];
 
     return (
         <div className="homepage-main-container ">
@@ -67,7 +80,7 @@ export const HomePageMain = () => {
                             className="btn btn-outline-danger mx-2 mb-2"
                             onClick={() => moodButtonClickHandler(moodItem)}
                         >
-                            {moodItem}
+                            {moodItem.title}
                         </button>
                     ))}
                 </div>

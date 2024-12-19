@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { Modal } from "./Modal";
 import { getPlaylistItems } from "../../Playlists/Playlists";
+import defaultImage from '../../images/default.jpg';
+import { getPlaylistCoverPhoto } from "../../Playlists/Playlists";
 
 
 export const PlayListModal = ({playList, onClose}) => {
     const [playListResponse, setPlayListResponse] = useState();
     const [reFetchPlaylist, setReFetchPlaylist] = useState(false);
+    const [platlistImage, setPlaylistImage] = useState();
    
     useEffect(() => {
         getPlaylistItems(playList.id).then(response => {
             setPlayListResponse(response);
-        })
+        }).then(() => getPlaylistCoverPhoto(playList.id)).then(response => setPlaylistImage(response[0].url));
     }, [playList, reFetchPlaylist]);
 
     
@@ -33,6 +36,7 @@ export const PlayListModal = ({playList, onClose}) => {
             tracks={playListTracks} 
             playlistId={playList.id} 
             reFetchPlaylist={() => setReFetchPlaylist(!reFetchPlaylist)}
+            imageSrc={platlistImage || defaultImage}
         />
     )
 }

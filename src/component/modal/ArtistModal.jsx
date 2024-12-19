@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { getArtistTopTracks } from "../../Playlists/Playlists";
+import { getArtist, getArtistTopTracks } from "../../Playlists/Playlists";
 import { Modal } from "./Modal";
+import defaultImage from '../../images/default.jpg';
 
 export const ArtistModal = ({artistId, onClose}) => {
     const [artistTopTracksResponse, setArtistTopTracksResponse] = useState();
+    const [artistImage, setArtistImage] = useState();
 
     useEffect(() => {
         getArtistTopTracks(artistId).then(response => {
             setArtistTopTracksResponse(response);
-        })
+        }).then(() => getArtist(artistId)).then(response =>  setArtistImage(response.images[0].url));
     }, [artistId]);
 
     const artistTracks = artistTopTracksResponse ? artistTopTracksResponse.tracks.map(track => ({
@@ -23,6 +25,6 @@ export const ArtistModal = ({artistId, onClose}) => {
     const artistName = artistTopTracksResponse ? artistTopTracksResponse.tracks[0].artists.filter(artist => artistId === artist.id)[0].name : "";
 
     return (
-        <Modal title={artistName} onClose={onClose} tracks={artistTracks} />
+        <Modal title={artistName} onClose={onClose} tracks={artistTracks} imageSrc={artistImage || defaultImage}/>
     )
 }

@@ -139,6 +139,22 @@ export const getAlbum = async (albumId) => {   // get album data
     }  
 }
 
+export const getArtist = async (artistId) => {
+    try {
+        const response = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
+            headers: {
+                'Authorization': `Bearer ${getAccessToken()}`
+            }
+        });
+        const data = await response.json();
+        console.log(`fetch data for artist ${artistId}`);
+        return data;
+    } catch (error) {
+        console.error(error.message);
+        throw(error);
+    }
+}
+
 export const getArtistTopTracks = async (artistId) => {  // get Artist top tracks data
    try {
         const response = await fetch(`https://api.spotify.com/v1/artists/${artistId}/top-tracks`,{
