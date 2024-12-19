@@ -62,7 +62,7 @@ const Root = ({ isLoggedin }) => {
         <JampaContext.Provider value={context}>
             <div className="homepage">
                 {/* Header */}
-                <header className="position-sticky top-0  ">
+                <header className="position-sticky top-0  zindex-1000">
 
                     <Header searchInput={(query) => setSearchQuery(query)} />
                 </header>
