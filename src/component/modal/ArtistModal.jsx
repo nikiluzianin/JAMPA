@@ -9,7 +9,7 @@ export const ArtistModal = ({artistId, onClose}) => {
     useEffect(() => {
         getArtistTopTracks(artistId).then(response => {
             setArtistTopTracksResponse(response);
-        }).then(() => getArtist(artistId)).then(response =>  setArtistImage(response.images[0].url));
+        }).then(() => getArtist(artistId)).then(response =>  setArtistImage(response?.images[0]?.url));
     }, [artistId]);
 
     const artistTracks = artistTopTracksResponse ? artistTopTracksResponse.tracks.map(track => ({

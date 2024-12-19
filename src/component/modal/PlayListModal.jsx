@@ -12,7 +12,7 @@ export const PlayListModal = ({playList, onClose}) => {
     useEffect(() => {
         getPlaylistItems(playList.id).then(response => {
             setPlayListResponse(response);
-        }).then(() => getPlaylistCoverPhoto(playList.id)).then(response => setPlaylistImage(response[0].url));
+        }).then(() => getPlaylistCoverPhoto(playList.id)).then(response => setPlaylistImage(response[0]?.url));
     }, [playList, reFetchPlaylist]);
 
     
