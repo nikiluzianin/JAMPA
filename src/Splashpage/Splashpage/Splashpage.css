@@ -19,7 +19,7 @@
     height: 200%; /* Taller than the viewport */
     background: red; /*Fallback color*/
 
-    background: linear-gradient(90deg, rgb(237, 28, 36) 0%, rgba(0, 166, 81, 1) 25%, rgba(0, 174, 239, 1) 50%, rgba(251, 176, 64, 1) 75%, rgba(102, 45, 145, 1) 100%); 
+    background: linear-gradient(90deg, rgb(26, 26, 26) 0%, rgb(19, 20, 20) 25%, rgb(46, 52, 55) 50%, rgb(198, 115, 133) 75%, rgb(237, 17, 120) 100%); 
     animation: wave 10s infinite linear;
     transform: rotate(30deg); 
     z-index: -1; /* Ensure it stays in the background */
@@ -42,7 +42,7 @@ button {
     border: none;
     margin-top: 200px;
     margin-bottom: 100px;
-    background: white;
+    background: whitesmoke;
     color: rgb(53, 53, 53);
     font-size: 16px;
     cursor: pointer;
