@@ -7,7 +7,6 @@ import { getAccessToken, login, checkAccessToken } from './AuthTokenApi/AuthToke
 import InitPlayerTest from './InitPlayerTest.jsx'
 //import LoginScreen from './LoginScreen/LoginScreen2.jsx'
 import Splashpage from './Splashpage/Splashpage/Splashpage.jsx'
-import '../src/Splashpage/Splashpage/Splashpage.css'
 import TestModal from './TestModal.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import Root from './pages/Root.jsx'
@@ -47,21 +46,21 @@ function App() {
   const loginAction = () => {
     login();
   }
-  
+
 
   return (
     /*<RouterProvider router={router1} future={{
       v7_startTransition: true,
     }} />*/
     <Routes>
-      
+
       {/* <Route path='/login' element={<LoginScreen click={loginAction} />} /> */}
       <Route path='/login' element={<Splashpage click={loginAction} />} />
-     
 
-     
+
+
       <Route path='/' element={<Root isLoggedin={loggedIn} />}>
-        <Route path='/home' element={<Home />} />   
+        <Route path='/home' element={<Home />} />
         <Route path='/initPlayer' element={<InitPlayerTest />} />
         <Route path="/*" element={<ErrorPage />} />
       </Route>
