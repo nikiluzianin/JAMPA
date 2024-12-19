@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Modal } from "./Modal";
 import { getPlaylistItems } from "../../Playlists/Playlists";
-import defaultImage from '../../images/default.jpg';
 import { getPlaylistCoverPhoto } from "../../Playlists/Playlists";
 
 
@@ -36,7 +35,7 @@ export const PlayListModal = ({playList, onClose}) => {
             tracks={playListTracks} 
             playlistId={playList.id} 
             reFetchPlaylist={() => setReFetchPlaylist(!reFetchPlaylist)}
-            imageSrc={platlistImage || defaultImage}
+            imageSrc={platlistImage}
         />
     )
 }

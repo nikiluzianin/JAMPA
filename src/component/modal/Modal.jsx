@@ -1,6 +1,7 @@
 import './Modal.css';
 import { TrackRow } from "./TrackRow";
 import { useState } from "react";
+import defaultImage from '../../images/default.jpg';
 
 const ModalComponent = ({ title, children, onClose }) => {
     return (
@@ -41,7 +42,7 @@ export const Modal = ({title, onClose, tracks, playlistId, reFetchPlaylist, imag
         <ModalComponent title={title} onClose={onClose} >
             <>
                 <div id={"songList"} className={'header-image'}>
-                    <img src={imageSrc} alt={`${title}`}/>
+                    <img src={imageSrc || defaultImage} alt={`${title}`}/>
                 </div>
                 <div className={"modal-dialog modal-dialog-scrollable"}>
                     <table className={"track-table"}>
