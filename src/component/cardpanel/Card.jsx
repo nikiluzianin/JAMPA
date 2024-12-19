@@ -20,8 +20,8 @@ export const Card = ({id, name, imageHref, selectCard, contentType}) => {
             <div className={"detail-card"}>
                 <div className="play-button" onClick={handlePlay}>
                     {isPlaying 
-                    ? (<i className="bi bi-pause-circle" style={{ fontSize: '3em', backgroundColor: '#8766eb5e' }}></i>) 
-                    : (<i className="bi bi-play-circle" style={{ fontSize: '3em', backgroundColor: '#8766eb5e' }}></i>)}
+                    ? (<i className="bi bi-pause-circle"></i>) 
+                    : (<i className="bi bi-play-circle"></i>)}
                 </div>
                 <div onClick={onClickCard} >
                     <img src={imageHref} alt={name} />

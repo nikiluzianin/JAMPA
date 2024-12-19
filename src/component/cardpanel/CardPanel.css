@@ -46,12 +46,20 @@
     padding: 10px;
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
+    z-index: 1;
 }
 
 .play-button{
     position: absolute;
     top: 10px;
     left: 10px;
+    z-index: 2;
+}
+
+.play-button i {
+    font-size: 3em;
+    background-color: #8766eba8;
+    border-radius: 25px;
 }
 
 .detail-card img {
